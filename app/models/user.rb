@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :bookings
   has_many :messages
-  has_many :conversations through: :messages
-  has_many :spaces through: :favorites
+  has_many :conversations, through: :messages
+  has_many :spaces, through: :favorites
 end
 
