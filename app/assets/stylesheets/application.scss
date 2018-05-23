@@ -4,12 +4,13 @@
 @import "config/bootstrap_variables";
 
 // External libraries
-@import "bootstrap-sprockets";
+// @import "bootstrap-sprockets";
+@import "tabler/variables";
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "tabler";
-@import "tabler.plugins"
+@import "tabler.plugins";
 
 // Your CSS partials
 @import "layouts/index";

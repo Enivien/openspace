@@ -232,7 +232,7 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
-  sprockets-rails
+  sprockets-rails (~> 3.2, >= 3.2.1)
   tabler-rubygem (~> 0.1.2)
   uglifier
   web-console (>= 3.3.0)

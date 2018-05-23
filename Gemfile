@@ -14,12 +14,12 @@ gem 'tabler-rubygem', '~> 0.1.2'
 gem 'autoprefixer-rails'
 gem 'bootstrap', '~> 4.1.1'
 gem 'bootstrap-sass', '~> 3.3'
+gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
 gem 'font-awesome-sass', '~> 5.0.9'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
-gem 'sprockets-rails'
 gem 'jquery-rails'
 
 group :development do
