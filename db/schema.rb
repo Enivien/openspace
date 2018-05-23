@@ -10,10 +10,96 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_23_065039) do
+ActiveRecord::Schema.define(version: 2018_05_23_090133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "amenities", force: :cascade do |t|
+    t.boolean "offsite_meeting"
+    t.boolean "workshop"
+    t.boolean "photo_shoot"
+    t.boolean "film_shoot"
+    t.boolean "corporate_event"
+    t.boolean "office_party"
+    t.boolean "product_launch"
+    t.boolean "on_site_parking"
+    t.boolean "wheelchair_access"
+    t.boolean "airco"
+    t.boolean "elevator"
+    t.boolean "natural_light"
+    t.boolean "whiteboard"
+    t.boolean "kitchen"
+    t.boolean "projector"
+    t.boolean "wifi"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.date "start_time"
+    t.date "end_time"
+    t.integer "total_price"
+    t.boolean "status"
+    t.bigint "user_id"
+    t.bigint "space_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["space_id"], name: "index_bookings_on_space_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "space_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["space_id"], name: "index_favorites_on_space_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.boolean "status"
+    t.bigint "user_id"
+    t.bigint "conversation_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "content"
+    t.bigint "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
+  end
+
+  create_table "spaces", force: :cascade do |t|
+    t.integer "capacity"
+    t.integer "price_per_hour"
+    t.integer "size"
+    t.integer "restroom"
+    t.integer "room"
+    t.string "location"
+    t.string "picture"
+    t.string "name"
+    t.text "description"
+    t.bigint "amenity_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amenity_id"], name: "index_spaces_on_amenity_id"
+    t.index ["user_id"], name: "index_spaces_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,8 +114,21 @@ ActiveRecord::Schema.define(version: 2018_05_23_065039) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "avatar"
+    t.text "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "spaces"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "favorites", "spaces"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
+  add_foreign_key "reviews", "bookings"
+  add_foreign_key "spaces", "amenities"
+  add_foreign_key "spaces", "users"
 end
