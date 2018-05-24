@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_24_024013) do
+ActiveRecord::Schema.define(version: 2018_05_24_045038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2018_05_24_024013) do
     t.boolean "wifi"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "space_id"
+    t.index ["space_id"], name: "index_amenities_on_space_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -100,11 +102,9 @@ ActiveRecord::Schema.define(version: 2018_05_24_024013) do
     t.string "picture"
     t.string "name"
     t.text "description"
-    t.bigint "amenity_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["amenity_id"], name: "index_spaces_on_amenity_id"
     t.index ["user_id"], name: "index_spaces_on_user_id"
   end
 
@@ -136,6 +136,5 @@ ActiveRecord::Schema.define(version: 2018_05_24_024013) do
   add_foreign_key "messages", "spaces"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "bookings"
-  add_foreign_key "spaces", "amenities"
   add_foreign_key "spaces", "users"
 end
