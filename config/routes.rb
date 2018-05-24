@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     resources :favorites, only: [ :index, :new, :create, :destroy ]
   end
 
-  resources :users, only: [] do
-    resources :messages, only: [ :index, :new, :create ]
+  resources :spaces, only: [] do
+    resources :messages, only: [ :index, :show, :new, :create ]
+      resources :replies, only: [ :new, :create ]
   end
 end

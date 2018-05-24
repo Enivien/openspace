@@ -1,4 +1,5 @@
 class Message < ApplicationRecord
   belongs_to :user
-  belongs_to :converstation
+  belongs_to :space
+  has_many :replies
 end
