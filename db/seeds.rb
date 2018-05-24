@@ -6,6 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Booking.destroy_all
+
+3.times do
+  booking = Booking.new(
+    start_time: Faker::Date.between(4.days.ago, Date.today),
+    end_time: Date.today,
+    total_price: 600,
+    user_id: 1,
+    space_id: 1,
+    )
+  booking.save!
+  p booking.total_price
+end
+
 User.destroy_all
 
 5.times do

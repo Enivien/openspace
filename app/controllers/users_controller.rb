@@ -32,7 +32,8 @@ class UsersController < ApplicationController
     # Destroy user spaces, bookings, messages on account delete
     @user.destroy
     redirect_to root_path
-
+  end
+  
   private
 
   def user_params
