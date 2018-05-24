@@ -7,9 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-amenity
 Space.create(
-  name: "Nice villa",
+  name: "Nice thing",
   capacity: 4,
   price_per_hour: 400,
   size: 500,
@@ -17,9 +16,10 @@ Space.create(
   room: 4,
   location: 'Australia',
   description: 'So f-ing nice',
-  user_id: 1,
-  amenity_id: 1,
+  user_id: 1
   )
+
+
 
   # create_table "spaces", force: :cascade do |t|
   #   t.integer "capacity"
