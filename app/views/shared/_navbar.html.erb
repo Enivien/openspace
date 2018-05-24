@@ -1,82 +1,199 @@
+
 <% if user_signed_in? %>
-<div class="navbar-wagon navbar-fixed-top">
-  <!-- Logo -->
-  <a href="/" class="navbar-wagon-brand">
-    <%= image_tag "logo.png" %>
-  </a>
 
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+<div class="header py-4">
+          <div class="container">
+            <div class="d-flex">
+              <a class="header-brand" href="./index.html">
+                <img src= "<%= image_path 'logo.png' %>" class="header-brand-img" alt="open space logo">
+              </a>
 
-  <!--     <a href="" class="navbar-wagon-item navbar-wagon-link">Host</a>
-      <a href="" class="navbar-wagon-item navbar-wagon-link">Trips</a>
-      <a href="" class="navbar-wagon-item navbar-wagon-link">Messages</a> -->
-      <%= link_to "Profile", user_path(current_user), :class => "navbar-wagon-item navbar-wagon-link"%>
-      <!--         <li><a href="#">Trips</a></li> -->
-      <%= link_to "Spaceships", spaceships_path, :class => "navbar-wagon-item navbar-wagon-link" %>
+              <form class="input-icon my-3 my-lg-0 ">
+                  <input type="search" class="form-control header-search search-nav" placeholder="Search…" tabindex="1">
+                  <div class="input-icon-addon">
+                    <i class="fe fe-search"></i>
+                  </div>
+                </form>
 
-      <!-- Profile picture with dropdown list -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <% if current_user.avatar.present? %>
-          <img src= <%= cl_image_path current_user.avatar %> class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
-          <% else %>
-          <img src="http://static4.businessinsider.com/image/5a451b22b0bcd51d008b7445-1067/rtx10sot.jpg" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
-          <% end %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <!-- <li><a href="#">Profile</a></li> -->
-            <li><%= link_to "Profile", user_path(current_user) %></li>
-            <!-- <li><a href="#">Dashboard</a></li> -->
-            <li><%= link_to "Spaceships", spaceships_path %></li>
-  <!--           <li><a href="#">Log Out</a></li>
-  -->      <li><%= link_to "Log Out", destroy_user_session_path, :confirm => "Are you sure?", :method => :delete %></li>
-</ul>
-</div>
-</div>
-</div>
+              <div class="d-flex order-lg-2 ml-auto">
+                <div class="nav-item d-none d-md-flex">
+                  <a href="https://github.com/tabler/tabler" class="btn btn-sm btn-outline-primary" target="_blank">Messages</a>
+                </div>
+                <div class="nav-item d-none d-md-flex">
+                  <a href="https://github.com/tabler/tabler" class="btn btn-sm btn-outline-primary" target="_blank">Bookings</a>
+                </div>
+                <div class="dropdown d-none d-md-flex">
+                  <a class="nav-link icon" data-toggle="dropdown">
+                    <i class="fe fe-bell"></i>
+                    <span class="nav-unread"></span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                    <a href="#" class="dropdown-item d-flex">
+                      <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/male/41.jpg)"></span>
+                      <div>
+                        <strong>Nathan</strong> pushed new commit: Fix page load performance issue.
+                        <div class="small text-muted">10 minutes ago</div>
+                      </div>
+                    </a>
+                    <a href="#" class="dropdown-item d-flex">
+                      <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/1.jpg)"></span>
+                      <div>
+                        <strong>Alice</strong> started new task: Tabler UI design.
+                        <div class="small text-muted">1 hour ago</div>
+                      </div>
+                    </a>
+                    <a href="#" class="dropdown-item d-flex">
+                      <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/18.jpg)"></span>
+                      <div>
+                        <strong>Rose</strong> deployed new version of NodeJS REST Api V3
+                        <div class="small text-muted">2 hours ago</div>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item text-center text-muted-dark">Mark all as read</a>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                    <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
+                    <span class="ml-2 d-none d-lg-block">
+                      <span class="text-default">Jane Pearson</span>
+                      <small class="text-muted d-block mt-1">Administrator</small>
+                    </span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-user"></i> Profile
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-settings"></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <span class="float-right"><span class="badge badge-primary">6</span></span>
+                      <i class="dropdown-icon fe fe-mail"></i> Inbox
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-send"></i> Message
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-help-circle"></i> Need help?
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-log-out"></i> Sign out
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                <span class="header-toggler-icon"></span>
+              </a>
+            </div>
+          </div>
+        </div>
 
-<!-- Dropdown appearing on mobile only -->
-<div class="navbar-wagon-item hidden-md hidden-lg">
-  <div class="dropdown">
-    <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-    <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-      <!--         <li><a href="#">Profile</a></li> -->
-      <li><%= link_to "Profile", user_path(current_user) %></li>
-      <!--         <li><a href="#">Trips</a></li> -->
-      <li><%= link_to "Spaceships", spaceships_path %></li>
-      <!--         <li><a href="#">Messagese</a></li> -->
-    </ul>
-  </div>
-</div>
-</div>
 
 <% else %>
-  <div class="navbar-wagon navbar-fixed-top">
-  <!-- Logo -->
-  <a href="/" class="navbar-wagon-brand">
-    <%= image_tag "logo.png" %>
-  </a>
 
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+<div class="header py-4">
+          <div class="container">
+            <div class="d-flex">
+              <a class="header-brand" href="./index.html">
+                <img src= "<%= image_path 'logo.png' %>" class="header-brand-img" alt="open space logo">
+              </a>
 
-<!--     <a href="" class="navbar-wagon-item navbar-wagon-link">Host</a>
-    <a href="" class="navbar-wagon-item navbar-wagon-link">Trips</a>
-    <a href="" class="navbar-wagon-item navbar-wagon-link">Messages</a> -->
-    <%#= link_to "Profile", user_path(current_user), :class => "navbar-wagon-item navbar-wagon-link"%>
-    <!--         <li><a href="#">Trips</a></li> -->
+              <form class="input-icon my-3 my-lg-0 ">
+                  <input type="search" class="form-control header-search search-nav" placeholder="Search…" tabindex="1">
+                  <div class="input-icon-addon">
+                    <i class="fe fe-search"></i>
+                  </div>
+                </form>
 
-<!-- Dropdown appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <!--         <li><a href="#">Profile</a></li> -->
-        <!--         <li><a href="#">Trips</a></li> -->
-     <li><%#= link_to "", spaceships_path %></li> -->
-        <!--         <li><a href="#">Messagese</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
+              <div class="d-flex order-lg-2 ml-auto">
+                <li class="nav-item">
+                    <a href="./index.html" class="nav-link "><i class="fe fe-home navbarbutton_margin"></i>    List your space</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="./index.html" class="nav-link "><i class="fe fe-edit navbarbutton_margin"></i>    Sign up</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="./index.html" class="nav-link "><i class="fe fe-log-in navbarbutton_margin"></i>    Log in</a>
+                  </li>
+
+
+                <div class="dropdown d-none d-md-flex">
+                  <a class="nav-link icon" data-toggle="dropdown">
+                    <i class="fe fe-bell"></i>
+                    <span class="nav-unread"></span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                    <a href="#" class="dropdown-item d-flex">
+                      <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/male/41.jpg)"></span>
+                      <div>
+                        <strong>Nathan</strong> pushed new commit: Fix page load performance issue.
+                        <div class="small text-muted">10 minutes ago</div>
+                      </div>
+                    </a>
+                    <a href="#" class="dropdown-item d-flex">
+                      <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/1.jpg)"></span>
+                      <div>
+                        <strong>Alice</strong> started new task: Tabler UI design.
+                        <div class="small text-muted">1 hour ago</div>
+                      </div>
+                    </a>
+                    <a href="#" class="dropdown-item d-flex">
+                      <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/18.jpg)"></span>
+                      <div>
+                        <strong>Rose</strong> deployed new version of NodeJS REST Api V3
+                        <div class="small text-muted">2 hours ago</div>
+                      </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item text-center text-muted-dark">Mark all as read</a>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                    <span class="avatar" style="background-image: url(./demo/faces/female/25.jpg)"></span>
+                    <span class="ml-2 d-none d-lg-block">
+                      <span class="text-default">Jane Pearson</span>
+                      <small class="text-muted d-block mt-1">Administrator</small>
+                    </span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-user"></i> Profile
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-settings"></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <span class="float-right"><span class="badge badge-primary">6</span></span>
+                      <i class="dropdown-icon fe fe-mail"></i> Inbox
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-send"></i> Message
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-help-circle"></i> Need help?
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <i class="dropdown-icon fe fe-log-out"></i> Sign out
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                <span class="header-toggler-icon"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
 <% end %>
+
+
+
