@@ -23,11 +23,13 @@ class UsersController < ApplicationController
   end
 
   def update
+    # Give options to edit profile on user profile page. Find a place to edit email / password.
     @user.update(params[:user])
     redirect_to user_path(user)
   end
 
   def destroy
+    # Destroy user spaces, bookings, messages on account delete
     @user.destroy
     redirect_to root_path
 
