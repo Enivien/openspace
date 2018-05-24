@@ -10,5 +10,13 @@ class User < ApplicationRecord
   has_many :messages
   has_many :conversations, through: :messages
   has_many :spaces, through: :favorites
+
+  after_create :send_welcome_email
+
+  private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
 end
 
