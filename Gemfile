@@ -21,6 +21,7 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 gem 'jquery-rails'
+gem 'faker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
