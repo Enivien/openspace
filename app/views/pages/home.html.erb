@@ -1,19 +1,21 @@
 <!-- TOP CAROUSSEL INCL SEARCH FIELD
 -->
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url(<%= image_tag "business.jpg", height: 70 %>);">
+  <div class="banner-content">
+    <h1>Dicover open spaces</h1>
+    <p>Find & book creative space for your next .....</p>
 
-<div class="banner">
-  <div class="caroussel">
-
-    <div class="typewriter-text">
-
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search in your city...">
+      <input type="text" class="form-control" placeholder="Search for amenities ...">
+      <span class="input-group-append">
+        <button class="btn btn-primary" type="button">Go!</button>
+      </span>
     </div>
-
-    <div class="search field ">
-
-    </div>
-
   </div>
 </div>
+
+
 
 <!-- CREDENTIALS
 -->
@@ -23,6 +25,7 @@
 
 
 <!-- CATEGORIES CA 4 ROWS WITH 3 CARDS EACH  -->
+
 <div class="container">
 
   <div class="margin-top-30">
@@ -54,20 +57,42 @@
 <div class="container">
   <div class="flexbox">
     <div class="flex direction column">
-      <div><h1></h1><h2></h2></div>
-      <%#= image_tag "space.png", height: 140 %>
+      <div>
+        <%#= image_tag "space.png", height: 140 %>
+        <h1>
+          Find the perfect space
+        </h1>
+        <h2>
+          Browse the marketplace and tailor your search to your activity needs.
+        </h2>
+      </div>
     </div>
 
     <div class="flex direction column">
-      <%#= image_tag "book.png", height: 140 %>
+      <div>
+        <%#= image_tag "book.png", height: 140 %>
+        <h1>
+          Book it with ease
+        </h1>
+        <h2>
+          Once you find a perfect match, book the space and pay online through our easy-to-use payment system.
+        </h2>
+      </div>
 
     </div>
+
 
     <div class="flex direction column">
       <%#= image_tag "meet.png", height: 140 %>
-
+      <h1>
+Meet, make or create
+      </h1>
+      <h2>
+        Create a memorable experience in a memorable space, and enjoy!
+      </h2>
     </div>
   </div>
+</div>
 </div>
 
 
@@ -76,8 +101,11 @@
 
 REUSE THE BANNER AND RESIZE WIDTH AND HEIGHT, ADD BUTTON
 
-<div class="container-business">
-  <a href=""> </a>
+<div class="banner" url(<%= image_tag "big-business.png", height: 750 %>);">
+  <div class="banner-content">
+    <h2>Exclusive access to free concierge services & secret listings for corporate clients</h2>
+        <button class="btn btn-primary" type="button">Learn more</button>
+  </div>
 </div>
 
 <!-- WHATS POPULAR
