@@ -1,2 +1,42 @@
-<h1>Spaces#new</h1>
-<p>Find me in app/views/spaces/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+
+      <div class="fullpage">
+        <h1 class='text-center'>List a New Space!</h1>
+        <!-- app/views/articles/_form.html.erb -->
+        <%= simple_form_for(@space) do |f| %>
+        <!-- [...] -->
+        <%= f.input :name, input_html: {class: "form-control"} %>
+        <%= f.input :description, input_html: {class: "form-control"} %>
+        <%= f.input :location , input_html: {class: "form-control"} %>
+        <%= f.input :price_per_hour , input_html: {class: "form-control"} %>
+        <%= f.input :capacity , input_html: {class: "form-control"} %>
+        <%= f.input :restroom , input_html: {class: "form-control"} %>
+        <%= f.input :room , input_html: {class: "form-control"} %>
+        <%= f.input :size , input_html: {class: "form-control"} %>
+        <%= f.input :picture , input_html: {class: "form-control"} %>
+        <%= f.button :submit, :class => 'btn btn-primary' %>
+        <!-- [...] -->
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- create_table "spaces", force: :cascade do |t|
+    t.integer "capacity"
+    t.integer "price_per_hour"
+    t.integer "size"
+    t.integer "restroom"
+    t.integer "room"
+    t.string "location"
+    t.string "picture"
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_spaces_on_user_id"
+  end
+-->

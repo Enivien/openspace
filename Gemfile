@@ -24,6 +24,8 @@ gem 'jquery-rails'
 gem 'faker'
 gem 'mail_form'
 gem 'omniauth-facebook'
+gem "geocoder"
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'

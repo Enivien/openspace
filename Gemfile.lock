@@ -80,6 +80,7 @@ GEM
       thor (~> 0.14)
     font-awesome-sass (5.0.13)
       sassc (>= 1.11)
+    geocoder (1.4.7)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashie (3.5.7)
@@ -252,6 +253,7 @@ DEPENDENCIES
   faker
   figaro
   font-awesome-sass (~> 5.0.9)
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
   letter_opener

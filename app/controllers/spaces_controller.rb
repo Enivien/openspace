@@ -4,6 +4,16 @@ class SpacesController < ApplicationController
 
   def index
     @spaces = Space.all
+
+    @spaces_markers = Space.where.not(latitude: nil, longitude: nil)
+
+    @markers = @spaces_markers.map do |space|
+      {
+        lat: space.latitude,
+        lng: space.longitude#,
+        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+      }
+    end
   end
 
   def show
