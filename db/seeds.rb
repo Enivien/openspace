@@ -7,55 +7,29 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Space.create(
-  name: "Nice thing",
-  capacity: 4,
-  price_per_hour: 400,
-  size: 500,
-  restroom: 3,
-  room: 4,
-  location: 'Australia',
-  description: 'So f-ing nice',
-  user_id: 1
-  )
+Booking.destroy_all
 
+3.times do
+  booking = Booking.new(
+    start_time: Faker::Date.between(4.days.ago, Date.today),
+    end_time: Date.today,
+    total_price: 600,
+    user_id: 1,
+    space_id: 1,
+    )
+  booking.save!
+  p booking.total_price
+end
 
+User.destroy_all
 
-  # create_table "spaces", force: :cascade do |t|
-  #   t.integer "capacity"
-  #   t.integer "price_per_hour"
-  #   t.integer "size"
-  #   t.integer "restroom"
-  #   t.integer "room"
-  #   t.string "location"
-  #   t.string "picture"
-  #   t.string "name"
-  #   t.text "description"
-  #   t.bigint "amenity_id"
-  #   t.bigint "user_id"
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  #   t.index ["amenity_id"], name: "index_spaces_on_amenity_id"
-  #   t.index ["user_id"], name: "index_spaces_on_user_id"
-  # end
-
-  #   create_table "amenities", force: :cascade do |t|
-  #   t.boolean "offsite_meeting"
-  #   t.boolean "workshop"
-  #   t.boolean "photo_shoot"
-  #   t.boolean "film_shoot"
-  #   t.boolean "corporate_event"
-  #   t.boolean "office_party"
-  #   t.boolean "product_launch"
-  #   t.boolean "on_site_parking"
-  #   t.boolean "wheelchair_access"
-  #   t.boolean "airco"
-  #   t.boolean "elevator"
-  #   t.boolean "natural_light"
-  #   t.boolean "whiteboard"
-  #   t.boolean "kitchen"
-  #   t.boolean "projector"
-  #   t.boolean "wifi"
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  # end
+5.times do
+  User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    email: Faker::Internet.email,
+    password: Faker::Internet.password(8),
+    bio: Faker::ChuckNorris.fact,
+    avatar: Faker::Avatar.image("my-own-slug", "50x50")
+    )
+end
