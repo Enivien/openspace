@@ -1,7 +1,9 @@
 .banner {
   color: white;
   text-align: center;
-  height: 85vh;
+  max-width: 100%;
+  height: 80vh;
+
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
   display: flex;
@@ -19,4 +21,8 @@
   color: rgb(255, 255, 255);
   opacity: 0.6;
   margin-bottom: 30px;
+}
+.banner-contain-picture {
+background-size: contain !important;
+    background-repeat: no-repeat;
 }
