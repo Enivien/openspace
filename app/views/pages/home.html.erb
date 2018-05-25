@@ -1,109 +1,70 @@
 <!-- TOP CAROUSSEL INCL SEARCH FIELD
- -->
+-->
 
 <div class="banner">
-  <div class="col-xs-1">
-    <div class="caroussel">
+  <div class="caroussel">
 
-      <div class="typewriter-text">
-
-      </div>
-
-      <div class="search field ">
-
-      </div>
+    <div class="typewriter-text">
 
     </div>
+
+    <div class="search field ">
+
+    </div>
+
   </div>
 </div>
 
 <!-- CREDENTIALS
- -->
-
-    <%= image_tag "credentials.jpg", height: 70 %>
-
-
-<div class="col_xs-4 col_xs-offset-4">
-  <h1>Book a space that inspires</h1>
-  <h2>Be inspired to meet, create, and innovate.
-</h2>
-
+-->
+<div><%= image_tag "credentials.jpg", height: 70 %>
 </div>
+
 
 
 <!-- CATEGORIES CA 4 ROWS WITH 3 CARDS EACH  -->
-
 <div class="container">
-  <div class="row">
-    <li>
-    <div class="col-xs-4">
 
-    </div>
-    </li>
-
-    <li>
-    <div class="col-xs-4">
-
-    </div>
-    </li><li>
-    <div class="col-xs-4">
-
-    </div>
-    </li><li>
-    <div class="col-xs-4">
-
-    </div>
-    </li><li>
-    <div class="col-xs-4">
-
-    </div>
-    </li><li>
-    <div class="col-xs-4">
-
-    </div>
-    </li><li>
-    <div class="col-xs-4">
-
-    </div>
-    </li><li>
-    <div class="col-xs-4">
-
-    </div>
-    </li><li>
-    <div class="col-xs-4">
-
-    </div>
-    </li><li>
-    <div class="col-xs-4">
-
-    </div>
-    </li><li>
-    <div class="col-xs-4">
-
-    </div>
-    </li><li>
-    <div class="col-xs-4">
-
-    </div>
-    </li>
+  <div class="margin-top-30">
+    <h1>Book a space that inspires</h1>
+    <h2>Be inspired to meet, create, and innovate.
+    </h2>
   </div>
-</div>
+
+
+
+
+
+  <div class="row">
+    <% @categories.each do |category| %>
+
+    <div class="col-xs-12 col-sm-4">
+      <div class="card">
+
+      </div>
+    </div>
+
+    <% end %>
+
+  </div>
+
 
 <!-- HOW IT WORKS: 3 SYMBOLS + TITLE + SUB-HEADLINE
- -->
+-->
 <div class="container">
-  <div class="row">
-    <div class="card">
-    <%#= image_tag "space.png", height: 140 %>
+  <div class="flexbox">
+    <div class="flex direction column">
+      <div><h1></h1><h2></h2></div>
+      <%#= image_tag "space.png", height: 140 %>
     </div>
 
-    <div class="card">
-    <%#= image_tag "book.png", height: 140 %>
+    <div class="flex direction column">
+      <%#= image_tag "book.png", height: 140 %>
 
     </div>
 
-    <div class="card">
-    <%#= image_tag "meet.png", height: 140 %>
+    <div class="flex direction column">
+      <%#= image_tag "meet.png", height: 140 %>
 
     </div>
   </div>
@@ -111,35 +72,40 @@
 
 
 <!-- BUSINESS CLASS
- -->
+-->
+
+REUSE THE BANNER AND RESIZE WIDTH AND HEIGHT, ADD BUTTON
 
 <div class="container-business">
   <a href=""> </a>
 </div>
 
 <!-- WHATS POPULAR
- -->
+-->
 <div class="container-popular">
 
  <h1> Our most popuar spaces
-</h1>
-<h2> Choose from theses selected place to create, collaborate or celebrate!</h2>
-<div class="row">
+ </h1>
+ <h2> Choose from theses selected place to create, collaborate or celebrate!</h2>
+ <div class="row">
+
+  <% @favourites.each do |favorite| %>
+  <div class="col-xs-12 col-sm-4">
+
     <div class="favorites-spaces-card">
 
-    </div>
-    <div class="favorites-spaces-card">
 
     </div>
-    <div class="favorites-spaces-card">
-
-    </div>
-    <div class="caroussel-control"></div>
+  </div>
+  <% end %>
 </div>
 
 
 <!-- MEET OUR HOSTS
- -->
+-->
+
+
+REDO THE SAME AS ABOVE
 <div class="container-hosts">
 
   <h1>Meet our hots</h1>
@@ -156,15 +122,18 @@
 
     </div>
     <div class="caroussel-control"></div>
-</div>
+  </div>
 
-RENT OUT YOUR SPACE
+  RENT OUT YOUR SPACE
 
-<div class="col_xs-4 col_xs-offset-4">
-  <h1>Rent a space out yourself</h1>
-  <h2>Generate earnings with the open space rental plattform.
-    Our Admin-Dashboard makes it easy to overview bookings and manage your space.
-</h2>
+  INSERT BANNER , FLEXBOX; JUSTIFY CENTER , ALIGN ITEMS CENTER
+
+
+  <div class="col_xs-4 col_xs-offset-4">
+    <h1>Rent a space out yourself</h1>
+    <h2>Generate earnings with the open space rental plattform.
+      Our Admin-Dashboard makes it easy to overview bookings and manage your space.
+    </h2>
 <!--   <a href=""> List your open space</a>
- -->
+-->
 </div>
