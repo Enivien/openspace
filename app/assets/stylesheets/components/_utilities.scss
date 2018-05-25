@@ -14,3 +14,26 @@
 .margin-top-60 {
   margin-top: 60px;
 }
+
+
+
+.flexgroup {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.flexelement {
+  flex: 0 0 45%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.flexrow {
+  flex-direction: row;
+}
+
+.flexcolumn {
+  flex-direction: column;
+}
