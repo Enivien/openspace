@@ -1,16 +1,4 @@
 Rails.application.routes.draw do
-  get 'contact/new'
-  get 'replies/new'
-  get 'messages/new'
-  get 'messages/show'
-  get 'favorites/index'
-  get 'reviews/new'
-  get 'bookings/show'
-  get 'bookings/new'
-  get 'spaces/index'
-  get 'spaces/show'
-  get 'spaces/new'
-  get 'users/show'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   root to: 'pages#home'

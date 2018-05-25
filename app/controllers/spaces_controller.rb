@@ -4,9 +4,7 @@ class SpacesController < ApplicationController
 
   def index
     @spaces = Space.all
-
     @spaces_markers = Space.where.not(latitude: nil, longitude: nil)
-
     @markers = @spaces_markers.map do |space|
       {
         lat: space.latitude,
@@ -18,6 +16,7 @@ class SpacesController < ApplicationController
 
   def show
     @space = Space.new
+    @booking = Booking.new
   end
 
   def new
