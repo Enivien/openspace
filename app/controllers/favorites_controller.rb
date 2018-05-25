@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
 
-  before_action :set_spaceship, only: [:show, :destroy]
+  before_action :set_favorite, only: [:show, :destroy]
 
   def index
     @favorites = Favorite.all
