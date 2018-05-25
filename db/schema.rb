@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_25_012921) do
+ActiveRecord::Schema.define(version: 2018_05_25_084420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "amenities", force: :cascade do |t|
+  create_table "activities", force: :cascade do |t|
     t.boolean "offsite_meeting"
     t.boolean "workshop"
     t.boolean "photo_shoot"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 2018_05_25_012921) do
     t.boolean "corporate_event"
     t.boolean "office_party"
     t.boolean "product_launch"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "space_id"
+    t.index ["space_id"], name: "index_activities_on_space_id"
+  end
+
+  create_table "amenities", force: :cascade do |t|
     t.boolean "on_site_parking"
     t.boolean "wheelchair_access"
     t.boolean "airco"
@@ -47,6 +54,9 @@ ActiveRecord::Schema.define(version: 2018_05_25_012921) do
     t.bigint "space_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "guest"
     t.index ["space_id"], name: "index_bookings_on_space_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -105,6 +115,8 @@ ActiveRecord::Schema.define(version: 2018_05_25_012921) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_spaces_on_user_id"
   end
 
@@ -131,6 +143,7 @@ ActiveRecord::Schema.define(version: 2018_05_25_012921) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "activities", "spaces"
   add_foreign_key "bookings", "spaces"
   add_foreign_key "bookings", "users"
   add_foreign_key "favorites", "spaces"
