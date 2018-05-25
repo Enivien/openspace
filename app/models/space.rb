@@ -1,4 +1,6 @@
 class Space < ApplicationRecord
+  mount_uploader :picture, PhotoUploader
+
   has_one :amenity
   belongs_to :user
   has_many :reviews

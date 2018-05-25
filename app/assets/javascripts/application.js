@@ -4,4 +4,5 @@
 //= require bootstrap-sprockets
 //= require tabler
 //= require tabler.plugins
+//= require dropzone
 //= require_tree .
