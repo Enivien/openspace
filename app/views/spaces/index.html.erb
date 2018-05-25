@@ -1,2 +1,12 @@
-<h1>Spaces#index</h1>
-<p>Find me in app/views/spaces/index.html.erb</p>
+<h1>You get what you want when you're poppin'</h1>
+<% @spaces.each do |space| %>
+  <%= space.name %>
+  <%= space.price_per_hour %>
+  <%= space.capacity %>
+  <%= space.size %>
+  <%= space.restroom %>
+  <%= space.room %>
+  <%= space.location %>
+  <%= space.picture %>
+  <%= space.description %>
+<% end %>
