@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_24_024013) do
+ActiveRecord::Schema.define(version: 2018_05_26_033939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "amenities", force: :cascade do |t|
+  create_table "activities", force: :cascade do |t|
     t.boolean "offsite_meeting"
     t.boolean "workshop"
     t.boolean "photo_shoot"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 2018_05_24_024013) do
     t.boolean "corporate_event"
     t.boolean "office_party"
     t.boolean "product_launch"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "space_id"
+    t.index ["space_id"], name: "index_activities_on_space_id"
+  end
+
+  create_table "amenities", force: :cascade do |t|
     t.boolean "on_site_parking"
     t.boolean "wheelchair_access"
     t.boolean "airco"
@@ -34,6 +41,23 @@ ActiveRecord::Schema.define(version: 2018_05_24_024013) do
     t.boolean "wifi"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "space_id"
+    t.index ["space_id"], name: "index_amenities_on_space_id"
+  end
+
+  create_table "attachinary_files", force: :cascade do |t|
+    t.string "attachinariable_type"
+    t.bigint "attachinariable_id"
+    t.string "scope"
+    t.string "public_id"
+    t.string "version"
+    t.integer "width"
+    t.integer "height"
+    t.string "format"
+    t.string "resource_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -45,6 +69,9 @@ ActiveRecord::Schema.define(version: 2018_05_24_024013) do
     t.bigint "space_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "guest"
     t.index ["space_id"], name: "index_bookings_on_space_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
@@ -97,14 +124,14 @@ ActiveRecord::Schema.define(version: 2018_05_24_024013) do
     t.integer "restroom"
     t.integer "room"
     t.string "location"
-    t.string "picture"
     t.string "name"
     t.text "description"
-    t.bigint "amenity_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["amenity_id"], name: "index_spaces_on_amenity_id"
+    t.float "latitude"
+    t.float "longitude"
+    t.json "pictures"
     t.index ["user_id"], name: "index_spaces_on_user_id"
   end
 
@@ -125,10 +152,13 @@ ActiveRecord::Schema.define(version: 2018_05_24_024013) do
     t.string "last_name"
     t.string "avatar"
     t.text "bio"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "activities", "spaces"
   add_foreign_key "bookings", "spaces"
   add_foreign_key "bookings", "users"
   add_foreign_key "favorites", "spaces"
@@ -136,6 +166,5 @@ ActiveRecord::Schema.define(version: 2018_05_24_024013) do
   add_foreign_key "messages", "spaces"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "bookings"
-  add_foreign_key "spaces", "amenities"
   add_foreign_key "spaces", "users"
 end
