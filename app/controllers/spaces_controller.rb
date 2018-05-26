@@ -13,8 +13,8 @@ class SpacesController < ApplicationController
       {
         lat: space.latitude,
         lng: space.longitude,
-        infoWindow: { content: content }#,
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        # infoWindow: { content: content }#,
+        infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { space: space }) }
       }
     end
   end
