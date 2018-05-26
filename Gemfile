@@ -28,6 +28,9 @@ gem "geocoder"
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'dropzonejs-rails'
+gem "attachinary"
+gem "jquery-fileupload-rails"
+gem "coffee-rails"
 
 group :development do
   gem 'web-console', '>= 3.3.0'
