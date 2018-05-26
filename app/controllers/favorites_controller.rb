@@ -13,10 +13,21 @@ class FavoritesController < ApplicationController
   def create
     # Will wait until we have the structure of where we want this.
     # Is written different I believe because button on card, etc.
+    @space = Space.find(params[:space_id])
+    @favorite = Favorite.new
+    @favorite.user = current_user
+    @favorite.space = @space
+
+    if @favorite.save
+      redirect_to spaces_path
+    end
   end
 
   def destroy
+    @space = Space.find(params[:space_id])
+    @favorite.destroy
 
+    redirect_to spaces_path
   end
 
   private
