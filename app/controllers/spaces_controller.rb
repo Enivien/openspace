@@ -1,5 +1,4 @@
 class SpacesController < ApplicationController
-
   before_action :set_space, only: [:show, :destroy, :edit, :update]
 
   def index
@@ -15,7 +14,6 @@ class SpacesController < ApplicationController
   end
 
   def show
-    @space = Space.new
     @booking = Booking.new
   end
 

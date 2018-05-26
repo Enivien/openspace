@@ -5,4 +5,5 @@
 //= require tabler
 //= require tabler.plugins
 //= require dropzone
+//= require tempusdominus-bootstrap-4.js
 //= require_tree .

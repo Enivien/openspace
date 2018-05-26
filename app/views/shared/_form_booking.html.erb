@@ -1,7 +1,7 @@
 <fieldset class="form-fieldset">
     <%= simple_form_for [space, booking] do %>
   <div class="form-group">
-    <label class="form-label">Your planned activity<span class="form-required" placeholder="Off-site"></span></label>
+    <label class="form-label">Your planned activity</label>
     <%= text_field_tag :event_type,
     params[:event_type],
     class: "form-control form-required",
@@ -59,3 +59,4 @@
   </div>
   <% end %>
 </fieldset>
+

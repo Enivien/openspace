@@ -28,6 +28,7 @@ gem "geocoder"
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'dropzonejs-rails'
+gem 'bootstrap4-datetime-picker-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
