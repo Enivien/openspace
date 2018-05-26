@@ -3,7 +3,29 @@ class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :destroy]
 
   def index
-    @favorites = Favorite.all
+    @favorites = Favorite.where(user_id: current_user)
+
+    collection_array = []
+
+    fav = @favorites.each do |favorite|
+      if favorite.space.latitude.nil?
+      else
+        collection_array << favorite.space
+      end
+    end
+
+    @spaces_markers = collection_array
+
+    @markers = @spaces_markers.map do |space|
+      content = space.name
+
+      {
+        lat: space.latitude,
+        lng: space.longitude,
+        # infoWindow: { content: content }#,
+        infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { space: space }) }
+      }
+    end
   end
 
   def new
