@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  resources :users, only: [] do
+  resources :spaces, only: [] do
     resources :favorites, only: [ :index, :new, :create, :destroy ]
   end
 
