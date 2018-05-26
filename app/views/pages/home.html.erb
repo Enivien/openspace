@@ -4,12 +4,12 @@
   <div>
     <h1>Dicover open spaces</h1>
     <p>Find & book creative space for your next .....</p>
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Search in your city...">
-    <input type="text" class="form-control" placeholder="Search for amenities ...">
-    <span class="input-group-append">
-      <button class="btn btn-primary" type="button">Go!</button>
-  </div>
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search in your city...">
+      <input type="text" class="form-control" placeholder="Search for amenities ...">
+      <span class="input-group-append">
+        <button class="btn btn-primary" type="button">Go!</button>
+      </div>
     </span>
   </div>
 </div>
@@ -28,74 +28,77 @@
 
   <div class="flexgroup">
     <div>
-    <h1>Book a space that inspires</h1>
-    <h2>Be inspired to meet, create, and innovate.</h2>
+      <h1>Book a space that inspires</h1>
+      <h2>Be inspired to meet, create, and innovate.</h2>
     </div>
   </div>
-
-
-
-
 
   <div class="row flexgroup">
     <%# @categories.each do |category| %>
-
     <div class="col-xs-12 col-sm-4 ">
       <div class="flexelement">
-      <div class="card">
-      THE HTML OF THE CATEGORIES SHOULD BE INSERTED HERE !
+        <div class="card">
+          THE HTML OF THE CATEGORIES SHOULD BE INSERTED HERE !
+        </div>
       </div>
+      <%# end %>
     </div>
-
-    <%# end %>
-
-  </div>
   </div>
 </div>
 
 <!-- HOW IT WORKS: 3 SYMBOLS + TITLE + SUB-HEADLINE
 -->
 <div class="container">
-  <div class="flexgroup">
-    <div class="flexelement flexcolumn">
-      <div>
-        <%#= image_tag "space.png", height: 140 %>
-        <h1>
-          Find the perfect space
-        </h1>
-        <h2 >
-          Browse the marketplace and tailor your search to your activity needs.
-        </h2>
-      </div>
-    </div>
+  <div class="margin-bottom-60">
+  <div class="row">
 
-    <div class="flexelement flexcolumn">
-      <div>
-        <%#= image_tag "book.png", height: 140 %>
-        <h1>
-          Book it with ease
-        </h1>
+    <div class="col-xs-12 col-sm-4 ">
+     <div class="icons">
+      <i class="fas fa-map-marker-alt fa-3x"></i>
+      <div class="margin-top-30">
         <h2>
-          Once you find a perfect match, book the space and pay online through our easy-to-use payment system.
+          Find the perfect space
         </h2>
+        <p >
+          Browse our marketplace and customize your search to your criteria.
+        </p>
       </div>
 
     </div>
+  </div>
 
-
-    <div class="flexelement flexcolumn">
-      <%#= image_tag "meet.png", height: 140 %>
-      <h1>
-        Meet, make or create
-      </h1>
+  <div class="col-xs-12 col-sm-4 ">
+   <div class="icons">
+    <i class="far fa-handshake fa-3x"></i>
+    <div class="margin-top-30">
       <h2>
-        Create a memorable experience in a memorable space, and enjoy!
+        Book it with ease
       </h2>
+      <p>
+        Once you find a perfect space, you can message the owner to ask about details and reserve it.
+      </p>
     </div>
+
   </div>
 </div>
 
+<div class="col-xs-12 col-sm-4 ">
+ <div class="icons">
+  <i class="fas fa-money-check-alt fa-3x"></i>
+  <div class="margin-top-30">
+   <h2>
+    Easy Checkout with Stripe
+  </h2>
+  <p>
+    Pay online through our easy-to-use payment system and create a lasting impression!
+  </p>
+</div>
 
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <!-- BUSINESS CLASS
 -->
@@ -111,24 +114,23 @@
 
 <!-- WHATS POPULAR
 -->
-<div class="container-popular">
-<div class="text-center">
- <h1> Our most popular spaces
- </h1>
- <h2> Choose from theses selected place to create, collaborate or celebrate!</h2>
- </div>
+<div class="container">
+  <div class="container-popular">
 
- <div class="row">
+    <div class="text-center">
+     <h1> Our most popular spaces
+     </h1>
+     <h2> Choose from theses selected place to create, collaborate or celebrate!</h2>
+   </div>
 
-  <%# @favourites.each do |favorite| %>
-  <div class="col-xs-12 col-sm-4">
-
-    <div class="favorites-spaces-card">
-
-
+   <div class="row">
+    <%# @favourites.each do |favorite| %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="favorites-spaces-card">
+      </div>
     </div>
+    <%# end %>
   </div>
-  <%# end %>
 </div>
 
 
@@ -136,22 +138,24 @@
 -->
 
 
+<div class="container">
+  <div class="container-hosts">
+    <div class="text-center">
 
-<div class="container-hosts">
-<div class="text-center">
+     <h1> Meet our hosts</h1>
+     <h2> See what they can say about their open space-exprience</h2>
+   </div>
+   <div class="row">
 
- <h1> Meet our hosts</h1>
- <h2> See what they can say about their open space-exprience</h2>
-</div>
- <div class="row">
+    <%# @users.each do |user| %>
+    <div class="col-xs-12 col-sm-4">
 
-  <%# @users.each do |user| %>
-  <div class="col-xs-12 col-sm-4">
-
-    <div class="hosts-interview-video-card">
+      <div class="hosts-interview-video-card">
+      </div>
     </div>
+    <%# end %>
   </div>
-  <%# end %>
+</div>
 </div>
 
 <!--
