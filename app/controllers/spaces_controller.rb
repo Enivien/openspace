@@ -8,9 +8,12 @@ class SpacesController < ApplicationController
     @spaces_markers = Space.where.not(latitude: nil, longitude: nil)
 
     @markers = @spaces_markers.map do |space|
+      content = space.name
+
       {
         lat: space.latitude,
-        lng: space.longitude#,
+        lng: space.longitude,
+        infoWindow: { content: content }#,
         # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
       }
     end
