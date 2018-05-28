@@ -15,6 +15,16 @@ class SpacesController < ApplicationController
       }
     end
 
+    if params[:query].present?
+      sql_query = " \
+        spaces.location ILIKE :query \
+        OR spaces.name ILIKE :query \
+      "
+      @spaces = Space.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @spaces = Space.all
+    end
+
     @favorite = Favorite.new
   end
 

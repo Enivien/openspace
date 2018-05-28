@@ -3,7 +3,7 @@ import Typed from 'typed.js';
 
 function loadDynamicBannerText() {
   new Typed('#banner-typed-text', {
-    strings: ["Open spaces for photoshootings.", "Open spaces for workshops.","Open spaces for conferences.","Open spaces for coporate parties.","Open spaces for productions."],
+    strings: ["Open spaces for photoshoots", "Open spaces for workshops","Open spaces for conferences","Open spaces for coporate parties","Open spaces for productions"],
     typeSpeed: 50,
     loop: true
   });

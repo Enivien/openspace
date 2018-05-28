@@ -2,6 +2,17 @@ class Space < ApplicationRecord
   #mount_uploader :picture, PhotoUploader
   has_attachments :pictures, maximum: 10
 
+  include PgSearch
+
+  pg_search_scope :global_search,
+    against: [ :location, :name],
+    associated_against: {
+      activity: [ :offsite_meeting, :workshop, :photo_shoot, :film_shoot, :corporate_event, :product_launch ]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
+
   has_one :amenity
   belongs_to :user
   has_many :reviews
