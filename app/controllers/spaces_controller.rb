@@ -17,6 +17,8 @@ class SpacesController < ApplicationController
         infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { space: space }) }
       }
     end
+
+    @favorite = Favorite.new
   end
 
   def show

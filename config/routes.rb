@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :favorites, only: [ :index ]
+  
   resources :profiles
 
   resources :spaces do
@@ -39,8 +41,8 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  resources :users, only: [] do
-    resources :favorites, only: [ :index, :new, :create, :destroy ]
+  resources :spaces, only: [] do
+    resources :favorites, only: [ :new, :create, :destroy ]
   end
 
   resources :spaces, only: [] do
