@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
+  <%= image_tag "logo.png", height: 50 %>
   <% end %>
 <!--   <div class="dropdown">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
@@ -12,45 +12,46 @@
     <a class="dropdown-item" href="#">Dropdown link</a>
   </div>
 </div>
- -->
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+-->
+<!-- Right Navigation -->
+<div class="navbar-wagon-right hidden-xs hidden-sm">
 
-    <% if user_signed_in? %>
+  <% if user_signed_in? %>
 
-      <!-- Links when logged in -->
-      <%= link_to "List a Space", new_space_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Profile", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+  <!-- Links when logged in -->
+  <%= link_to "List a Space", new_space_path, class: "navbar-wagon-item navbar-wagon-link" %>
+  <%= link_to "Favorites", favorites_path, class: "navbar-wagon-item navbar-wagon-link" %>
+  <%= link_to "Profile", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
 
-      <!-- Avatar with dropdown menu -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out") %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
-    <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Log In"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-    <% end %>
+  <!-- Avatar with dropdown menu -->
+  <div class="navbar-wagon-item">
+    <div class="dropdown">
+      <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <li>
+          <%= link_to "#" do %>
+          <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "#" do %>
+          <i class="fa fa-cog"></i>  <%= t(".settings") %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-sign-out"></i>  <%= t(".sign_out") %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
+  <% else %>
+  <!-- Login link (when logged out) -->
+  <%= link_to t(".sign_in", default: "Log In"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+  <% end %>
+</div>
 
-  <!-- Dropdown list appearing on mobile only -->
+<!-- Dropdown list appearing on mobile only -->
 </div>
 
