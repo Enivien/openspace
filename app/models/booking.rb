@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :space
+  has_one :activity, through: :space
   before_save :set_total_price
 
   def set_total_price

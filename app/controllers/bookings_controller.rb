@@ -4,11 +4,6 @@ class BookingsController < ApplicationController
   def show
   end
 
-
-  def new
-    @booking = Booking.new
-  end
-
   def create
     # 1. Guest creates booking
     # 2. Guest fills in CC details
@@ -21,7 +16,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     if @booking.save
       flash[:notice] = "You've booked a space"
-      redirect_to user_path(current_user)
+      redirect_to space_booking_path(@space, @booking)
     else
       render "spaces/show"
     end
