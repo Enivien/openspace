@@ -1,12 +1,15 @@
 class BookingsController < ApplicationController
-   before_action :set_booking, only: [:edit, :update, :destroy]
+   before_action :set_booking, only: [:show, :edit, :update, :destroy]
+
+  def show
+  end
+
 
   def new
     @booking = Booking.new
   end
 
   def create
-    raise
     # 1. Guest creates booking
     # 2. Guest fills in CC details
     # 3.1 Host approves booking > CC charged
@@ -14,7 +17,7 @@ class BookingsController < ApplicationController
     @space = Space.find(params[:space_id])
     @booking = Booking.new(booking_params)
     @booking.space = @space
-
+    @booking.total_price = @booking.set_total_price
     @booking.user = current_user
     if @booking.save
       flash[:notice] = "You've booked a space"
@@ -47,6 +50,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_time, :end_time, :start_date, :end_date, :guest, :total_price, :user, :space)
+    params.require(:booking).permit(:start_time, :end_time, :guest, :total_price, :user, :space)
   end
 end
