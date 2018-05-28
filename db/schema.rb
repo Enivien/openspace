@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 2018_05_26_033939) do
     t.integer "restroom"
     t.integer "room"
     t.string "location"
+    t.string "picture"
     t.string "name"
     t.text "description"
     t.bigint "user_id"
@@ -131,7 +132,6 @@ ActiveRecord::Schema.define(version: 2018_05_26_033939) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
-    t.json "pictures"
     t.index ["user_id"], name: "index_spaces_on_user_id"
   end
 
