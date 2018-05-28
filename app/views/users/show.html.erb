@@ -1,16 +1,15 @@
-
+<br>
 <div class="wrapper-grey padded">
   <div class="container">
-    <h1>You get what you want when you poppin'</h1>
-    <h3 class="text-center">Your Incoming Bookings 🚀</h3>
+    <h3 class="text-center">Your Incoming Booking Requests 🚀</h3>
     <% if current_user.spaces.present? %>
     <% current_user.spaces.each do |space| %>
     <% space.bookings.each do |booking| %>
     <% if booking.present? %>
     <div class="product">
       <div class='product-body'>
-        <h3><%= link_to booking.space.price_per_hour, space_path(booking.space) %></h3>
-        <p><%= booking.user.first_name %> wants to book <%= booking.start_date%> - <%= booking.end_date %></p>
+        <h3><%= link_to booking.space.name, space_path(booking.space) %></h3>
+        <p><%= booking.user.first_name %> wants to book from <%= booking.start_time%> until <%= booking.end_time %></p>
       </div>
       <ul class="list-inline product-controls hidden-sm hidden-xs">
         <% if booking.status == "Accepted" %>
@@ -19,7 +18,7 @@
         <p class="status declined">Declined</p>
         <% else %>
         <%= simple_form_for ([space, booking]) do |f| %>
-        <%= f.select :status, ['Accepted', 'Declined']%>
+        <%= f.select :status, [['Accepted', true],['Declined', false]]%>
         <br>
         <br>
         <%= f.button :submit, :class => 'btn btn-primary' %>
@@ -38,7 +37,7 @@
 
 <div class="wrapper-grey padded">
   <div class="container">
-    <h3 class="text-center">Reviews 🚀</h3>
+    <h3 class="text-center">Your Outgoing Bookings & Reviews 🚀</h3>
     <% Booking.all.each do |booking| %>
     <% if booking.user == current_user %>
     <div class="product">
@@ -75,7 +74,7 @@
       <div class="col-xs-12 col-sm-6 col-md-4">
         <%= link_to space_path(space) do %>
         <% if space.pictures.present? %>
-        <div class="card" style="background-image: url('<%= cl_image_path space.picture, height: 300, width: 400, crop: :fill %>')">
+        <div class="card" style="background-image: url('<%= cl_image_path favorite.space.pictures[0].path, crop: :fill %>')">
           <% else %>
           <div class="card" style="background-image: url('https://media.tenor.com/images/baa51bc6187cb2fc286a3d3582061f12/tenor.png')">
             <% end %>
@@ -83,7 +82,6 @@
               <%= space.name %>
             </div>
             <div class="card-price">
-             $ <%= space.price_per_hour %>
            </div>
          </div>
        </div>
@@ -96,7 +94,7 @@
 
        <%= link_to 'Add a New space', new_space_path, class: "text-center btn btn-primary" %>
 
-       <%= link_to 'Back to Explore spaces', spaces_path, class: "text-center btn btn-secondary" %>
+       <%= link_to 'Back to Spaces', spaces_path, class: "text-center btn btn-secondary" %>
        <p></p>
        </div>
     </div>

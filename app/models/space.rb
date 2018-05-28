@@ -1,5 +1,5 @@
 class Space < ApplicationRecord
-  # mount_uploader :picture, PhotoUploader
+  #mount_uploader :picture, PhotoUploader
   has_attachments :pictures, maximum: 10
 
   has_one :amenity
