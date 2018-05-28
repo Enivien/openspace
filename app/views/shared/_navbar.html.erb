@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
+  <%= image_tag "logo.png", height: 50 %>
   <% end %>
 <!--   <div class="dropdown">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
@@ -12,16 +12,16 @@
     <a class="dropdown-item" href="#">Dropdown link</a>
   </div>
 </div>
- -->
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
+-->
+<!-- Right Navigation -->
+<div class="navbar-wagon-right hidden-xs hidden-sm">
 
-    <% if user_signed_in? %>
+  <% if user_signed_in? %>
 
-      <!-- Links when logged in -->
-      <%= link_to "List a Space", new_space_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Profile", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
-
+  <!-- Links when logged in -->
+  <%= link_to "List a Space", new_space_path, class: "navbar-wagon-item navbar-wagon-link" %>
+  <%= link_to "Favorites", favorites_path, class: "navbar-wagon-item navbar-wagon-link" %>
+  <%= link_to "Profile", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
@@ -50,7 +50,12 @@
       <%= link_to t(".sign_in", default: "Log In"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
+  <% else %>
+  <!-- Login link (when logged out) -->
+  <%= link_to t(".sign_in", default: "Log In"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+  <% end %>
+</div>
 
-  <!-- Dropdown list appearing on mobile only -->
+<!-- Dropdown list appearing on mobile only -->
 </div>
 
