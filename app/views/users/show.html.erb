@@ -53,12 +53,12 @@
         <% end %>
       </div>
       <ul class="list-inline product-controls hidden-sm hidden-xs">
-        <% if booking.status == "Accepted" %>
-        <p class="status accepted">Accepted</p>
-        <% elsif booking.status == "Declined" %>
-        <p class="status declined">Declined</p>
-        <% elsif booking.status.nil? %>
+        <% if booking.status.nil? %>
         <p class="status pending">Pending</p>
+        <% elsif booking.status == true %>
+        <p class="status accepted">Accepted</p>
+        <% elsif booking.status == false %>
+        <p class="status declined">Declined</p>
         <% end %>
       </ul>
     </div>
