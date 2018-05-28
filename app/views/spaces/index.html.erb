@@ -31,7 +31,7 @@
     <% end %>
   </div>
         <div class="text-center padded">
-      <%= link_to "List a new space", new_space_path, class: "btn btn-primary" %>
+      <%= link_to "List a new space", (current_user.first_name.present? ? new_space_path : edit_profile_path(current_user)), class: "btn btn-primary" %>
     </div>
   </div>
   <div id="map" data-markers="<%= @markers.to_json %>">

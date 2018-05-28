@@ -33,7 +33,7 @@ class SpacesController < ApplicationController
     @space.user = current_user
     @space.save
     if @space.save
-      redirect_to space_path(@space)
+      redirect_to new_space_amenity_path(@space)
     else
       render :new
     end

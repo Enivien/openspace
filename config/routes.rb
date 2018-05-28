@@ -21,8 +21,18 @@ Rails.application.routes.draw do
 
   resources :users
 
+  resources :profiles
+
   resources :spaces do
     resources :bookings
+  end
+
+  resources :spaces, only: [] do
+    resources :amenities
+  end
+
+  resources :spaces, only: [] do
+    resources :activities
   end
 
   resources :bookings, only: [] do
