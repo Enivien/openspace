@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
+    <%= image_tag "logo.png", height: 35 %>
   <% end %>
 <!--   <div class="dropdown">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
@@ -19,8 +19,8 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "List a Space", new_space_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Profile", user_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "List a Space", new_space_path, class: "btn btn-sm btn-outline-primary margin-right-15" %>
+      <%= link_to "Profile", user_path(current_user), class: "btn btn-sm btn-outline-primary" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -47,7 +47,8 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Log In"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+      <%= link_to t(".sign_in", default: "Log In"), new_user_session_path, class: "btn btn-sm btn-outline-primary" %>
     <% end %>
   </div>
 
