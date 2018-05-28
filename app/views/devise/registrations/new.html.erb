@@ -1,8 +1,10 @@
-<h2>Sign up</h2>
+<div class="container">
 
-<%= link_to "Sign Up with Facebook", user_facebook_omniauth_authorize_path %>
+  <h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= link_to image_tag("fb-sign.png", width: "300px"), user_facebook_omniauth_authorize_path %>
+
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -14,6 +16,10 @@
   <div class="form-actions">
     <%= f.button :submit, "Sign up" %>
   </div>
-<% end %>
+  <% end %>
 
-<%= render "devise/shared/links" %>
+  <%- if controller_name != 'sessions' %>
+  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <% end -%>
+
+</div>

@@ -1,0 +1,24 @@
+<br>
+<div class="container">
+    <h2 class="text-center">What activities are allowed?</h2>
+    <div class="wrapper-grey padded">
+      <div class="fullpage">
+        <%= simple_form_for [@space, @activity] do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :offsite_meeting %>
+          <%= f.input :workshop %>
+          <%= f.input :photo_shoot %>
+          <%= f.input :film_shoot %>
+          <%= f.input :corporate_event %>
+          <%= f.input :office_party %>
+          <%= f.input :product_launch %>
+        </div>
+        <div class="form-actions ">
+          <%= f.button :submit, "Submit" %>
+        </div>
+        <% end %>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<br>
+<div class="container">
+    <h2 class="text-center">Add your amenities</h2>
+    <div class="wrapper-grey padded">
+      <div class="fullpage">
+        <%= simple_form_for [@space, @amenity] do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :on_site_parking %>
+          <%= f.input :wheelchair_access %>
+          <%= f.input :airco %>
+          <%= f.input :elevator %>
+          <%= f.input :natural_light %>
+          <%= f.input :whiteboard %>
+          <%= f.input :kitchen %>
+          <%= f.input :projector %>
+          <%= f.input :wifi %>
+        </div>
+        <div class="form-actions ">
+          <%= f.button :submit, "Next" %>
+        </div>
+        <% end %>
+      </div>
+  </div>
+</div>
