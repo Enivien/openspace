@@ -1,0 +1,38 @@
+.parallax {
+    /* The image used */
+    // background-image: url("example8.jpg.jpg");
+
+    /* Full height */
+    height: 50%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.mask {
+    /* The image used */
+    // background-image: url("example8.jpg.jpg");
+
+    /* Full height */
+    width: 100%;
+    // height: 100%;
+    background-repeat: no-repeat;
+
+    /* Create the parallax scrolling effect */
+  //   background-attachment: fixed;
+  //   background-position: center;
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  // }
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
