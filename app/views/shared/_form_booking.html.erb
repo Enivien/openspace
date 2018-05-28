@@ -1,47 +1,32 @@
 <fieldset class="form-fieldset">
-    <%= simple_form_for [space, booking] do %>
+    <%= simple_form_for [space, booking] do |f| %>
   <div class="form-group">
     <label class="form-label">Your planned activity</label>
-    <%= text_field_tag :event_type,
-    params[:event_type],
-    class: "form-control form-required",
-      placeholder: "Off-site"
+    <%= f.input :activity, collection: @activities, class: "form-control form-required selectize-input items full has-options has-items focus input-active dropdown-active"
+    #   placeholder: "Off-site"
       %>
+
   </div>
+      <div class="form-group">
+        <label class="form-label">Start</label>
+        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+          <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" name="booking[start_time]"/>
+          <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
+      </div>
 
-  <div class="form-group">
-    <label class="form-label">Start<span class="form-required"></span></label>
-    <div class="input-group">
-      <%= date_field_tag :start_date,
-        params[:start_date],
-        class: "form-control form-required"
-      %>
+      <div class="form-group">
+        <label class="form-label">End</label>
+        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+          <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2" name="booking[end_time]"/>
+          <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
+      </div>
 
-         <!-- <input type="text" name="field-name" class="form-control" data-mask="00/00/0000" data-mask-clearifnotmatch="true" placeholder="00/00/0000" autocomplete="off" maxlength="10"> -->
-
-      <span class="input-group-append">
-      <%= date_field_tag :start_time,
-      params[:start_time],
-      class: "form-control form-required"
-      %>
-      </span>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="form-label">End<span class="form-required"></span></label>
-    <div class="input-group">
-      <%= date_field_tag :end_time,
-      params[:end_time],
-      class: "form-control form-required"
-      %>
-      <span class="input-group-append">
-      <%= date_field_tag :end_date,
-      params[:end_date],
-      class: "form-control form-required"
-      %>
-      </span>
-    </div>
   <div class="form-group">
     <label class="form-label">Guests<span class="form-required"></span></label>
     <%= number_field_tag :guest,
@@ -57,5 +42,23 @@
     placeholder: @space.capacity
     %>
   </div>
+    </div>
+  </div>
   <% end %>
 </fieldset>
+
+<%= content_for(:after_js) do %>
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker({ format: 'DD/MM/YYYY hh:mm',
+        startDate: '-3d'
+    });
+  });
+  $(function () {
+    $('#datetimepicker2').datetimepicker({ format: 'DD/MM/YYYY hh:mm',
+      startDate: '-3d'
+    });
+  });
+</script>
+<% end %>
+

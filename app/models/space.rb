@@ -14,6 +14,7 @@ class Space < ApplicationRecord
     }
 
   has_one :amenity
+  has_one :activity
   belongs_to :user
   has_many :reviews
   has_many :favorites
@@ -24,5 +25,13 @@ class Space < ApplicationRecord
 
   def user_favorited?(user)
     Favorite.find_by(user_id: user.id, space_id: self.id)
+  end
+
+  def activities
+    activities = self.activity
+
+    activities.attributes.select do |key, value|
+      key if value == true
+    end.keys
   end
 end
