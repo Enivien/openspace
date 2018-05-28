@@ -25,7 +25,7 @@
 
 <!-- CREDENTIALS
 -->
-<div style="padding-left: 20px; padding-right: 20px;"><%= image_tag "credentials.jpg", height: 70 %>
+<div class="full-width" style="padding-left: 20px; padding-right: 20px;"><%= image_tag "credentials.jpg", height: 70 %>
 </div>
 
 
@@ -112,12 +112,18 @@
 -->
 <!--
   REUSE THE BANNER AND RESIZE WIDTH AND HEIGHT, ADD BUTTON -->
-
-  <div class="banner banner-contain-picture", style="background-image: url('<%= image_path "big-business.png" %>')";>
+<div class="full-height">
+  <div class="parallax banner ", style="background-image: url('<%= image_path "example8.jpg" %>')";>
+      <div class="mask", style="background-image: url('<%= image_path "mask.png" %>')";>
     <div class="banner-content flexcolumn">
-      <h2>Exclusive access to free concierge services & secret listings for corporate clients</h2>
-      <button class="btn btn-primary" type="button">Learn more</button>
+
+        <h2 class="margin-top-300">Exclusive access for corporate clients</h2>
+      <button class="btn btn-primary margin-bottom-30" type="button">Learn more</button>
+
+      </div>
+
     </div>
+  </div>
   </div>
 
 <!-- WHATS POPULAR
@@ -174,11 +180,11 @@
 <div class="banner " style="background-image: url('<%= image_path "example2.jpg", height: 350 %>');">
   <div class="banner-content flexgroup">
     <div class="flexelement flexcolumn">
-      <h1>Rent a space out yourself</h1>
-      <h2>Generate earnings with the open space rental plattform.
+      <h1 class="margin-top-150">Rent a space out yourself</h1>
+      <h2>Generate earnings with the open space rental plattform. <br>
         Our Admin-Dashboard makes it easy to overview bookings and manage your space.
       </h2>
-      <button class="btn btn-primary" type="button">List your open space!</button>
+      <button class="btn btn-primary margin-top-40" type="button">List your open space!</button>
     </div>
   </div>
 </div>
