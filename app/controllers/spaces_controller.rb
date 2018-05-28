@@ -5,12 +5,17 @@ class SpacesController < ApplicationController
     @spaces = Space.all
     @spaces_markers = Space.where.not(latitude: nil, longitude: nil)
     @markers = @spaces_markers.map do |space|
+      content = space.name
+
       {
         lat: space.latitude,
-        lng: space.longitude#,
-        # infoWindow: { content: render_to_string(partial: "/flats/map_box", locals: { flat: flat }) }
+        lng: space.longitude,
+        # infoWindow: { content: content }#,
+        infoWindow: { content: render_to_string(partial: "/spaces/map_box", locals: { space: space }) }
       }
     end
+
+    @favorite = Favorite.new
   end
 
   def show
@@ -27,7 +32,7 @@ class SpacesController < ApplicationController
     @space.user = current_user
     @space.save
     if @space.save
-      redirect_to space_path(@space)
+      redirect_to new_space_amenity_path(@space)
     else
       render :new
     end
@@ -51,7 +56,7 @@ class SpacesController < ApplicationController
   private
 
   def space_params
-    params.require(:space).permit(:name, :capacity, :size, :restroom, :description, :room, :price_per_hour, :location, :picture, :picture_cache, :user_id)
+    params.require(:space).permit(:name, :capacity, :size, :restroom, :description, :room, :price_per_hour, :location, :user_id, pictures: [])
   end
 
   def set_space
