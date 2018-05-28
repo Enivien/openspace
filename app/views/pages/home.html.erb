@@ -6,26 +6,36 @@
 
     <div class="margin-bottom-250">
 
-<h1>
-  <span id="banner-typed-text"></span>
-</h1>
-<h2>Discover & Book Unique Spaces for Your Upcoming Activity
-</h2>
+      <h1>
+        <span id="banner-typed-text"></span>
+      </h1>
+      <h2>Discover & Book Unique Spaces for Your Upcoming Activity
+      </h2>
     </div>
-    <div class="input-group" id="input-group-landingpage">
-      <input type="text" class="form-control" placeholder="Search in your city...">
-      <input type="text" class="form-control" placeholder="Search for amenities ...">
-      <span class="input-group-append">
-        <button class="btn btn-primary" type="button">Go!</button>
-      </div>
-    </span>
-  </div>
-</div>
 
+    <div class="input-group" id="input-group-landingpage">
+      <%= form_tag spaces_path, method: :get do %>
+      <!--       <input type="text" id="space_location" class="form-control" placeholder="Search in your city..."> -->
+      <!--         <input class="form-control" placeholder="Search for activites ..."> -->
+      <span class="input-group-append">
+        <!-- <button class="btn btn-primary" type="button">Go!</button> -->
+      </div>
+      <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+        id: "space_location",
+        placeholder: "Search in your favorite city.."
+        %>
+        <br>
+        <%= submit_tag "Search!", :class => 'btn btn-primary-search btn-lg' %>
+        <% end %>
+      </span>
+    </div>
+  </div>
 
 <!-- CREDENTIALS
 -->
-<div class="full-width" style="padding-left: 20px; padding-right: 20px;"><%= image_tag "credentials.jpg", height: 70 %>
+<div class="full-width" style="padding-left: 20px; padding-right: 20px;"><%= image_tag "credentials.jpg", height: 40, width: 3000;%>
 </div>
 
 
@@ -58,17 +68,32 @@
 -->
 <div class="container">
   <div class="margin-bottom-60">
-  <div class="row">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-4 ">
+       <div class="icons">
+        <i class="fas fa-map-marker-alt fa-3x"></i>
+        <div class="margin-top-30">
+          <h2>
+            Find the perfect space
+          </h2>
+          <p >
+            Browse our marketplace and customize your search to your criteria.
+          </p>
+        </div>
+
+      </div>
+    </div>
 
     <div class="col-xs-12 col-sm-4 ">
      <div class="icons">
-      <i class="fas fa-map-marker-alt fa-3x"></i>
+      <i class="far fa-handshake fa-3x"></i>
       <div class="margin-top-30">
         <h2>
-          Find the perfect space
+          Book it with ease
         </h2>
-        <p >
-          Browse our marketplace and customize your search to your criteria.
+        <p>
+          Once you find a perfect space, you can message the owner to ask about details and reserve it.
         </p>
       </div>
 
@@ -77,30 +102,15 @@
 
   <div class="col-xs-12 col-sm-4 ">
    <div class="icons">
-    <i class="far fa-handshake fa-3x"></i>
+    <i class="fas fa-money-check-alt fa-3x"></i>
     <div class="margin-top-30">
-      <h2>
-        Book it with ease
-      </h2>
-      <p>
-        Once you find a perfect space, you can message the owner to ask about details and reserve it.
-      </p>
-    </div>
-
+     <h2>
+      Easy Checkout with Stripe
+    </h2>
+    <p>
+      Pay online through our easy-to-use payment system and create a lasting impression!
+    </p>
   </div>
-</div>
-
-<div class="col-xs-12 col-sm-4 ">
- <div class="icons">
-  <i class="fas fa-money-check-alt fa-3x"></i>
-  <div class="margin-top-30">
-   <h2>
-    Easy Checkout with Stripe
-  </h2>
-  <p>
-    Pay online through our easy-to-use payment system and create a lasting impression!
-  </p>
-</div>
 
 </div>
 </div>
@@ -112,18 +122,18 @@
 -->
 <!--
   REUSE THE BANNER AND RESIZE WIDTH AND HEIGHT, ADD BUTTON -->
-<div class="full-height">
-  <div class="parallax banner ", style="background-image: url('<%= image_path "example8.jpg" %>')";>
+  <div class="full-height">
+    <div class="parallax banner ", style="background-image: url('<%= image_path "example8.jpg" %>')";>
       <div class="mask", style="background-image: url('<%= image_path "mask.png" %>')";>
-    <div class="banner-content flexcolumn">
+        <div class="banner-content flexcolumn">
 
-        <h2 class="margin-top-300">Exclusive access for corporate clients</h2>
-      <button class="btn btn-primary margin-bottom-30" type="button">Learn more</button>
+          <h2 class="margin-top-300">Exclusive access for corporate clients</h2>
+          <button class="btn btn-primary margin-bottom-30" type="button">Learn more</button>
+
+        </div>
 
       </div>
-
     </div>
-  </div>
   </div>
 
 <!-- WHATS POPULAR
