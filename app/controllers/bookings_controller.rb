@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
   end
 
   def create
+    raise
     # 1. Guest creates booking
     # 2. Guest fills in CC details
     # 3.1 Host approves booking > CC charged
@@ -46,6 +47,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_time, :end_time, :start_date, :end_date, :guest, :total_price, :status, :user, :space)
+    params.require(:booking).permit(:start_time, :end_time, :start_date, :end_date, :guest, :total_price, :user, :space)
   end
 end
