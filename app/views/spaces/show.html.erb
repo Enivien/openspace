@@ -2,20 +2,13 @@
   <div id="carousel-controls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="carousel-picture" alt="" src="https://picsum.photos/3000/1000/?random.jpg" data-holder-rendered="true">
+        <img class="carousel-picture" alt="" src="<%= cl_image_path @space.pictures[0].path if @space.pictures[0].path.present? %>" data-holder-rendered="true">
       </div>
-      <div class="carousel-item">
-        <img class="carousel-picture" alt="" src="https://picsum.photos/3000/1000/?random.jpg data-holder-rendered="true">
+      <% @space.pictures.drop(1).each do |picture| %>
+        <div class="carousel-item">
+        <img class="carousel-picture" alt="" src="<%= cl_image_path picture.path %>" data-holder-rendered="true">
       </div>
-      <div class="carousel-item">
-        <img class="carousel-picture" alt="" src="https://picsum.photos/3000/1000/?randompg" data-holder-rendered="true">
-      </div>
-      <div class="carousel-item">
-        <img class="carousel-picture" alt="" src="https://picsum.photos/3000/1000/?random0.jpg" data-holder-rendered="true">
-      </div>
-      <div class="carousel-item">
-        <img class="carousel-picture" alt="" src="https://picsum.photos/3000/1000/?random" data-holder-rendered="true">
-      </div>
+      <% end %>
     </div>
     <a class="carousel-control-prev" href="#carousel-controls" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -31,28 +24,80 @@
 <div class="header-space">
   <div class="container">
     <div class="row">
+
       <div class="col-xs-12 col-sm-6 sm-offset-1">
-        <div class="header-space-details">
-          <div class="header-space-owner">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Space Details</h3>
           </div>
-          <div class="header-space-name">
-            <h1><%= @space.name %></h1>
-            <p><%= @space.location %></p>
-            <p><%= @space.user.first_name %>'s space</p>
-            <!-- CHECK ON SYNTAX AVG RATING OR ADD AVG RATING TO SPACE -->
-            <p class="rating"><%#= @space.reviews.rating.average * "*" %></p>
+          <div class="card-body">
+            <div class="media mb-5">
+              <%= cl_image_tag @space.user.avatar, class: "d-flex mr-5 rounded avatar-xl" %>
+              <div class="media-body">
+                <h5><%= @space.name %></h5>
+                <address class="text-muted small">
+                  <%= @space.location %><br>
+                  <%= @space.user.first_name %> <%= @space.user.last_name %>
+                </address>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="h6">Activities</div>
+                <% @space.activities.each do |activity| %>
+                <%= activity.split('_').collect(&:capitalize).join(' ') %>
+                <br>
+                <% end %>
+                <br>
+              </div>
+              <div class="col-6">
+                <div class="h6">Amenities</div>
+                <% @space.amenities.each do |amenity| %>
+                <%= amenity.split('_').collect(&:capitalize).join(' ') %>
+                <br>
+                <% end %>
+                <br>
+              </div>
+              <div class="col-6">
+                <div class="h6">Rooms</div>
+                <p>
+                  <%= @space.room %>
+                </p>
+              </div>
+              <div class="col-6">
+                <div class="h6">Restrooms</div>
+                <p>
+                  <%= @space.restroom %>
+                </p>
+              </div>
+              <div class="col-6">
+                <div class="h6">Max Guests Allowed</div>
+                <p>
+                  <%= @space.capacity %>
+                </p>
+              </div>
+              <div class="col-6">
+                <div class="h6">Restrooms</div>
+                <p>
+                  <%= @space.restroom %>
+                </p>
+              </div>
+            </div>
+            <div class="h6">Description</div>
+            <p><%= @space.description %></p>
           </div>
         </div>
       </div>
+
       <div class="col-xs-12 col-sm-4 sm-offset-1">
         <div class="booking-form" style="align-content: right">
          <%= render 'shared/form_booking', booking: @booking, space: @space, activity: @activity %>
-         </div>
-      </div>
-    </div>
-  </div>
+       </div>
+     </div>
+   </div>
+ </div>
 </div>
-<div id="space-description">
+<!-- <div id="space-description">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-10 sm-offset-1">
@@ -101,21 +146,27 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <div id="space-reviews">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-10 sm-offset-1">
-        <h3>Reviews</h3>
+        <div class="card-header">
+          <h2 class="card-title">Reviews</h2>
+        </div>
         <% if @space.reviews.present? %>
-          <% @space.reviews.each do |review| %>
-            <div class="product">
-              <div class='product-body'>
-                <h3><%= link_to review.content, space_path(review) %></h3>
-                <p>Went to space <%= review.booking.start_time %> - <%= review.booking.end_time %></p>
-              </div>
-            </div>
-          <% end %>
+        <% @space.reviews.each do |review| %>
+        <div class="product">
+          <div class='product-body'>
+            <h3><%= review.content%>
+              <% review.rating.times do %>
+              <i class="fe fe-star"></i>
+              <% end %>
+              </h3>
+            <p> <strong><%= review.booking.user.first_name %></strong> visited this space <%= review.booking.start_time %> - <%= review.booking.end_time %></p>
+          </div>
+        </div>
+        <% end %>
         <% end %>
       </div>
     </div>
