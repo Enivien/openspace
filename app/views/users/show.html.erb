@@ -1,105 +1,175 @@
-<br>
 <div class="wrapper-grey padded">
   <div class="container">
-    <h3 class="text-center">Your Incoming Booking Requests 🚀</h3>
+    <div class="card-header">
+      <h2 class="card-title">My Incoming Booking Requests 🚀</h2>
+    </div>
+    <br>
     <% if current_user.spaces.present? %>
     <% current_user.spaces.each do |space| %>
     <% space.bookings.each do |booking| %>
     <% if booking.present? %>
-    <div class="product">
-      <div class='product-body'>
-        <h3><%= link_to booking.space.name, space_path(booking.space) %></h3>
-        <p><%= booking.user.first_name %> wants to book from <%= booking.start_time%> until <%= booking.end_time %></p>
+    <div class="card card-aside">
+      <a href="#" class="card-aside-column w-50" style="background-image: url( <%= cl_image_path booking.space.pictures[0].path if booking.space.pictures.any? %>)"></a>
+      <div class="card-body d-flex flex-column">
+        <h4><a href="#"><%= link_to booking.space.name, space_path(booking.space)%></a></h4>
+        <div class="text-muted">
+               <p>Someone wants to book your space for: <%= booking.booked_activity.split('_').collect(&:capitalize).join(' ') %></p>
+        </div>
+        <div class="d-flex align-items-center pt-5 mt-auto">
+          <ul class="list-inline product-controls hidden-sm hidden-xs">
+            <% if booking.status == true %>
+            <p class="status accepted">Accepted</p>
+            <% elsif booking.status == false %>
+            <p class="status declined">Declined</p>
+            <% else %>
+            <%= simple_form_for ([space, booking]) do |f| %>
+            <%= f.select :status, [['Accepted', true],['Declined', false]]%>
+            <br>
+            <br>
+            <%= f.button :submit, :class => 'btn btn-primary' %>
+            <% end %>
+            <% end %>
+          </ul>
+          <div class="ml-auto text-muted">
+            <!-- <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a> -->
+          </div>
+        </div>
       </div>
-      <ul class="list-inline product-controls hidden-sm hidden-xs">
-        <% if booking.status == "Accepted" %>
-        <p class="status accepted">Accepted</p>
-        <% elsif booking.status == "Declined" %>
-        <p class="status declined">Declined</p>
-        <% else %>
-        <%= simple_form_for ([space, booking]) do |f| %>
-        <%= f.select :status, [['Accepted', true],['Declined', false]]%>
-        <br>
-        <br>
-        <%= f.button :submit, :class => 'btn btn-primary' %>
-        <% end %>
-        <% end %>
-      </ul>
     </div>
     <% end %>
     <% end %>
     <% end %>
-    <% else %>
-    <p>You have no spaces</p>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="wrapper-grey padded">
+  <div class="container">
+    <div class="card-header">
+      <h2 class="card-title">My Outgoing Requests 🚀</h2>
+    </div>
+    <br>
+    <% Booking.all.each do |booking| %>
+    <% if booking.user == current_user %>
+    <div class="card card-aside">
+      <a href="#" class="card-aside-column w-50" style="background-image: url( <%= cl_image_path booking.space.pictures[0].path if booking.space.pictures.any? %>)"></a>
+      <div class="card-body d-flex flex-column">
+        <h4><a href="#"><%= link_to booking.space.name, space_path(booking.space)%></a></h4>
+        <div class="text-muted">
+          <% if booking.end_time < Date.today %>
+          <p>
+            <%= link_to "Review this past booking ❤️", new_booking_review_path(booking) %>
+          </p>
+          <% else %>
+          <%#= raise %>
+          <p><%= booking.start_time%> - <%= booking.end_time %></p>
+          <p>Activity: <%= booking.booked_activity.split('_').collect(&:capitalize).join(' ') %></p>
+          <% end %>
+        </div>
+        <div class="d-flex align-items-center pt-5 mt-auto">
+          <ul class="list-inline product-controls hidden-sm hidden-xs">
+            <% if booking.status.nil? %>
+            <p class="status pending">Pending</p>
+            <% elsif booking.status == true %>
+            <p class="status accepted">Accepted</p>
+            <% elsif booking.status == false %>
+            <p class="status declined">Declined</p>
+            <% end %>
+          </ul>
+          <div class="ml-auto text-muted">
+            <!-- <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
     <% end %>
   </div>
 </div>
 
 <div class="wrapper-grey padded">
   <div class="container">
-    <h3 class="text-center">Your Outgoing Bookings & Reviews 🚀</h3>
-    <% Booking.all.each do |booking| %>
-    <% if booking.user == current_user %>
-    <div class="product">
-      <div class='product-body'>
-        <h3><%= link_to booking.space.name, space_path(booking.space) %></h3>
-        <% if booking.end_time < Date.today %>
-        <p>
-          <%= link_to "Review this past booking ❤️", new_booking_review_path(booking) %>
-        </p>
-        <% else %>
-        <%#= raise %>
-        <p><%= booking.start_time%> - <%= booking.end_time %></p>
-        <% end %>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">My Profile</h3>
       </div>
-      <ul class="list-inline product-controls hidden-sm hidden-xs">
-        <% if booking.status.nil? %>
-        <p class="status pending">Pending</p>
-        <% elsif booking.status == true %>
-        <p class="status accepted">Accepted</p>
-        <% elsif booking.status == false %>
-        <p class="status declined">Declined</p>
-        <% end %>
-      </ul>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-auto">
+              <span class="avatar avatar-xl" style="background-image: url(<%= image_path(current_user.avatar) %>)"></span>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label class="form-label">Email-Address</label>
+                <input class="form-control" placeholder="<%= current_user.email %>">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input class="form-control" placeholder=<%= current_user.first_name %>>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input class="form-control" placeholder=<%= current_user.last_name %>>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Bio</label>
+            <textarea class="form-control" rows="5"><%= current_user.bio %></textarea>
+          </div>
+          <div class="form-group">
+<!--             <label class="form-label">Password</label>
+            <input type="password" class="form-control" value="password"> -->
+            <span style="opacity: 1; background-size: 19px 13px; left: 648px; top: 402.5px; width: 19px; min-width: 19px; height: 13px; position: absolute; background-image: url(); background-repeat: no-repeat; background-position: 0px 0px; border: none; display: inline; visibility: visible; z-index: auto;"></span></div>
+<!--             <div class="form-footer">
+              <button class="btn btn-primary btn-block">Save</button>
+            </div> -->
+          </form>
+        </div>
+      </div>
     </div>
-    <% end %>
-    <% end %>
   </div>
-</div>
-<div class="wrapper-grey padded">
-  <div class="container">
-    <h3 class="text-center">Your spaces 🚀</h3>
-    <div class="row">
+
+  <div class="wrapper-grey padded">
+    <div class="container">
+      <div class="card-header">
+        <h2 class="card-title">My Spaces</h2>
+      </div>
+      <br>
       <% current_user.spaces.each do |space| %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <%= link_to space_path(space) do %>
-        <% if space.pictures.present? %>
-        <div class="card" style="height: 100px;background-image: url('<%= cl_image_path space.pictures[0].path%>')">
-           <div class="card-price">
+      <div class="card card-aside">
+        <a href="#" class="card-aside-column w-50" style="background-image: url( <%= cl_image_path space.pictures[0].path if space.pictures.any? %>)"></a>
+        <div class="card-body d-flex flex-column">
+          <h4><a href="#"><%= link_to space.name, space_path(space)%></a></h4>
+          <div class="text-muted"><%= space.description %></div>
+          <div class="d-flex align-items-center pt-5 mt-auto">
+            <div class="avatar avatar-md mr-3" style="background-image: url(<%= image_path current_user.avatar %>)"></div>
+            <div>
+              <a href="./profile.html" class="text-default"><%= current_user.first_name %> <%= current_user.last_name %></a>
+              <!-- <small class="d-block text-muted">3 days ago</small> -->
             </div>
-          <% else %>
-          <div class="card" style="background-image: url('https://media.tenor.com/images/baa51bc6187cb2fc286a3d3582061f12/tenor.png')">
-            <% end %>
-            <div class="card-description">
-              <%= space.name %>
-            </div>
-            <div class="card-price">
+            <div class="ml-auto text-muted">
+              <!-- <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a> -->
             </div>
           </div>
         </div>
-        <% end %>
-        <% end %>
       </div>
+      <% end %>
+    </div>
+  </div>
 
-      <div class="bottomgroup">
-        <div class="bottombuttons">
+  <div class="wrapper-grey padded">
+    <div class="container">
 
-         <%= link_to 'Add a New space', new_space_path, class: "text-center btn btn-primary" %>
-
-         <%= link_to 'Back to Spaces', spaces_path, class: "text-center btn btn-secondary" %>
-         <p></p>
-       </div>
-     </div>
-   </div>
- </div>
-</div>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Trailing 6 Year Earnings</h3>
+        </div>
+        <div class="card-body">
+          <div id="chart-combination" style="height: 16rem; max-height: 256px; position: relative;" class="c3"><svg width="326" height="256" style="overflow: hidden;"><defs><clipPath id="c3-1527575486129-clip"><rect width="284" height="222"></rect></clipPath><clipPath id="c3-1527575486129-clip-xaxis"><rect x="-41" y="-20" width="356" height="50"></rect></clipPath><clipPath id="c3-1527575486129-clip-yaxis"><rect x="-39" y="-4" width="60" height="246"></rect></clipPath><clipPath id="c3-1527575486129-clip-grid"><rect width="284" height="222"></rect></clipPath><clipPath id="c3-1527575486129-clip-subchart"><rect width="284"></rect></clipPath></defs><g transform="translate(40.5,4.5)"><text class="c3-text c3-empty" text-anchor="middle" dominant-baseline="middle" x="142" y="111" style="opacity: 0;"></text><rect class="c3-zoom-rect" width="284" height="222" style="opacity: 0;"></rect><g clip-path="url(https://tabler.github.io/tabler/charts.html#c3-1527575486129-clip)" class="c3-regions" style="visibility: visible;"></g><g clip-path="url(https://tabler.github.io/tabler/charts.html#c3-1527575486129-clip-grid)" class="c3-grid" style="visibility: visible;"><g class="c3-xgrid-focus"><line class="c3-xgrid-focus" x1="-10" x2="-10" y1="0" y2="222" style="visibility: hidden;"></line></g></g><g clip-path="url(https://tabler.github.io/tabler/charts.html#c3-1527575486129-clip)" class="c3-chart"><g class="c3-event-rects c3-event-rects-single" style="fill-opacity: 0;"><rect class=" c3-event-rect c3-event-rect-0" x="0" y="0" width="48" height="222"></rect><rect class=" c3-event-rect c3-event-rect-1" x="48" y="0" width="48" height="222"></rect><rect class=" c3-event-rect c3-event-rect-2" x="95" y="0" width="48" height="222"></rect><rect class=" c3-event-rect c3-event-rect-3" x="142" y="0" width="48" height="222"></rect><rect class=" c3-event-rect c3-event-rect-4" x="190" y="0" width="48" height="222"></rect><rect class=" c3-event-rect c3-event-rect-5" x="237" y="0" width="48" height="222"></rect></g><g class="c3-chart-bars"><g class="c3-chart-bar c3-target c3-target-data1" style="pointer-events: none;"><g class=" c3-shapes c3-shapes-data1 c3-bars c3-bars-data1" style="cursor: pointer;"><path class="c3-shape c3-shape-0 c3-bar c3-bar-0" style="stroke: rgb(94, 186, 0); fill: rgb(94, 186, 0); opacity: 1;" d="M 16,222 L16,206.9318181818182 L32,206.9318181818182 L32,222 z"></path><path class="c3-shape c3-shape-1 c3-bar c3-bar-1" style="stroke: rgb(94, 186, 0); fill: rgb(94, 186, 0); opacity: 1;" d="M 64,222 L64,211.95454545454544 L80,211.95454545454544 L80,222 z"></path><path class="c3-shape c3-shape-2 c3-bar c3-bar-2" style="stroke: rgb(94, 186, 0); fill: rgb(94, 186, 0); opacity: 1;" d="M 111,222 L111,196.88636363636365 L127,196.88636363636365 L127,222 z"></path><path class="c3-shape c3-shape-3 c3-bar c3-bar-3" style="stroke: rgb(94, 186, 0); fill: rgb(94, 186, 0); opacity: 1;" d="M 158,222 L158,201.9090909090909 L174,201.9090909090909 L174,222 z"></path><path class="c3-shape c3-shape-4 c3-bar c3-bar-4" style="stroke: rgb(94, 186, 0); fill: rgb(94, 186, 0); opacity: 1;" d="M 206,222 L206,191.86363636363635 L222,191.86363636363635 L222,222 z"></path><path class="c3-shape c3-shape-5 c3-bar c3-bar-5" style="stroke: rgb(94, 186, 0); fill: rgb(94, 186, 0); opacity: 1;" d="M 253,222 L253,196.88636363636365 L269,196.88636363636365 L269,222 z"></path></g></g><g class="c3-chart-bar c3-target c3-target-data2" style="pointer-events: none;"><g class=" c3-shapes c3-shapes-data2 c3-bars c3-bars-data2" style="cursor: pointer;"></g></g><g class="c3-chart-bar c3-target c3-target-data3" style="pointer-events: none;"><g class=" c3-shapes c3-shapes-data3 c3-bars c3-bars-data3" style="cursor: pointer;"></g></g><g class="c3-chart-bar c3-target c3-target-data4" style="pointer-events: none;"><g class=" c3-shapes c3-shapes-data4 c3-bars c3-bars-data4" style="cursor: pointer;"><path class="c3-shape c3-shape-0 c3-bar c3-bar-0" style="stroke: rgb(70, 127, 207); fill: rgb(70, 127, 207); opacity: 1;" d="M 16,206.9318181818182 L16,106.47727272727272 L32,106.47727272727272 L32,206.9318181818182 z"></path><path class="c3-shape c3-shape-1 c3-bar c3-bar-1" style="stroke: rgb(70, 127, 207); fill: rgb(70, 127, 207); opacity: 1;" d="M 64,211.95454545454544 L64,146.65909090909088 L80,146.65909090909088 L80,211.95454545454544 z"></path><path class="c3-shape c3-shape-2 c3-bar c3-bar-2" style="stroke: rgb(70, 127, 207); fill: rgb(70, 127, 207); opacity: 1;" d="M 111,196.88636363636365 L111,151.68181818181822 L127,151.68181818181822 L127,196.88636363636365 z"></path><path class="c3-shape c3-shape-3 c3-bar c3-bar-3" style="stroke: rgb(70, 127, 207); fill: rgb(70, 127, 207); opacity: 1;" d="M 158,201.9090909090909 L158,81.36363636363637 L174,81.36363636363637 L174,201.9090909090909 z"></path><path class="c3-shape c3-shape-4 c3-bar c3-bar-4" style="stroke: rgb(70, 127, 207); fill: rgb(70, 127, 207); opacity: 1;" d="M 206,191.86363636363635 L206,126.56818181818178 L222,126.56818181818178 L222,191.86363636363635 z"></path><path class="c3-shape c3-shape-5 c3-bar c3-bar-5" style="stroke: rgb(70, 127, 207); fill: rgb(70, 127, 207); opacity: 1;" d="M 253,196.88636363636365 L253,86.38636363636365 L269,86.38636363636365 L269,196.88636363636365 z"></path></g></g></g><g class="c3-chart-lines"><g class="c3-chart-line c3-target c3-target-data1" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-data1 c3-lines c3-lines-data1"></g><g class=" c3-shapes c3-shapes-data1 c3-areas c3-areas-data1"></g><g class=" c3-selected-circles c3-selected-circles-data1"></g><g class=" c3-shapes c3-shapes-data1 c3-circles c3-circles-data1" style="cursor: pointer;"></g></g><g class="c3-chart-line c3-target c3-target-data2" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-data2 c3-lines c3-lines-data2"><path class=" c3-shape c3-shape c3-line c3-line-data2" style="stroke: rgb(246, 109, 155); opacity: 1;" d="M24,121.54545454545453L72,156.70454545454544L119,176.79545454545456L166,101.45454545454547L214,156.70454545454544L261,111.5"></path></g><g class=" c3-shapes c3-shapes-data2 c3-areas c3-areas-data2"><path class=" c3-shape c3-shape c3-area c3-area-data2" style="fill: rgb(246, 109, 155); opacity: 0.1;" d="M 24 121.54545454545453"></path></g><g class=" c3-selected-circles c3-selected-circles-data2"></g><g class=" c3-shapes c3-shapes-data2 c3-circles c3-circles-data2" style="cursor: pointer;"><circle class="c3-shape c3-shape-0 c3-circle c3-circle-0" r="2.5" style="fill: rgb(246, 109, 155); opacity: 1;" cx="24" cy="121.54545454545453"></circle><circle class="c3-shape c3-shape-1 c3-circle c3-circle-1" r="2.5" style="fill: rgb(246, 109, 155); opacity: 1;" cx="72" cy="156.70454545454544"></circle><circle class="c3-shape c3-shape-2 c3-circle c3-circle-2" r="2.5" style="fill: rgb(246, 109, 155); opacity: 1;" cx="119" cy="176.79545454545456"></circle><circle class=" c3-shape c3-shape-3 c3-circle c3-circle-3" r="2.5" style="fill: rgb(246, 109, 155); opacity: 1;" cx="166" cy="101.45454545454547"></circle><circle class="c3-shape c3-shape-4 c3-circle c3-circle-4" r="2.5" style="fill: rgb(246, 109, 155); opacity: 1;" cx="214" cy="156.70454545454544"></circle><circle class=" c3-shape c3-shape-5 c3-circle c3-circle-5" r="2.5" style="fill: rgb(246, 109, 155); opacity: 1;" cx="261" cy="111.5"></circle></g></g><g class="c3-chart-line c3-target c3-target-data3" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-data3 c3-lines c3-lines-data3"><path class=" c3-shape c3-shape c3-line c3-line-data3" style="stroke: rgb(94, 186, 0); opacity: 1;" d="M24,71.31818181818184Q62.5,114.51363636363635,72,121.54545454545453C86.25,132.09318181818182,104.9,156.70454545454547,119,141.63636363636365S151.75,27.871590909090923,166,21.090909090909097S199.75,85.1306818181818,214,96.43181818181816Q223.5,103.96590909090907,261,96.43181818181816"></path></g><g class=" c3-shapes c3-shapes-data3 c3-areas c3-areas-data3"><path class=" c3-shape c3-shape c3-area c3-area-data3" style="fill: rgb(94, 186, 0); opacity: 0.1;" d="M 24 71.31818181818184"></path></g><g class=" c3-selected-circles c3-selected-circles-data3"></g><g class=" c3-shapes c3-shapes-data3 c3-circles c3-circles-data3" style="cursor: pointer;"><circle class="c3-shape c3-shape-0 c3-circle c3-circle-0" r="2.5" style="fill: rgb(94, 186, 0); opacity: 1;" cx="24" cy="71.31818181818184"></circle><circle class="c3-shape c3-shape-1 c3-circle c3-circle-1" r="2.5" style="fill: rgb(94, 186, 0); opacity: 1;" cx="72" cy="121.54545454545453"></circle><circle class="c3-shape c3-shape-2 c3-circle c3-circle-2" r="2.5" style="fill: rgb(94, 186, 0); opacity: 1;" cx="119" cy="141.63636363636365"></circle><circle class=" c3-shape c3-shape-3 c3-circle c3-circle-3" r="2.5" style="fill: rgb(94, 186, 0); opacity: 1;" cx="166" cy="21.090909090909097"></circle><circle class="c3-shape c3-shape-4 c3-circle c3-circle-4" r="2.5" style="fill: rgb(94, 186, 0); opacity: 1;" cx="214" cy="96.43181818181816"></circle><circle class=" c3-shape c3-shape-5 c3-circle c3-circle-5" r="2.5" style="fill: rgb(94, 186, 0); opacity: 1;" cx="261" cy="96.43181818181816"></circle></g></g><g class="c3-chart-line c3-target c3-target-data4" style="opacity: 1; pointer-events: none;"><g class=" c3-shapes c3-shapes-data4 c3-lines c3-lines-data4"></g><g class=" c3-shapes c3-shapes-data4 c3-areas c3-areas-data4"></g><g class=" c3-selected-circles c3-selected-circles-data4"></g><g class=" c3-shapes c3-shapes-data4 c3-circles c3-circles-data4" style="cursor: pointer;"></g></g></g><g class="c3-chart-arcs" transform="translate(142,106)"><text class="c3-chart-arcs-title" style="text-anchor: middle; opacity: 0;"></text></g><g class="c3-chart-texts"><g class="c3-chart-text c3-target c3-target-data1" style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-data1"></g></g><g class="c3-chart-text c3-target c3-target-data2" style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-data2"></g></g><g class="c3-chart-text c3-target c3-target-data3" style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-data3"></g></g><g class="c3-chart-text c3-target c3-target-data4" style="opacity: 1; pointer-events: none;"><g class=" c3-texts c3-texts-data4"></g></g></g></g><g clip-path="url(https://tabler.github.io/tabler/charts.html#c3-1527575486129-clip-grid)" class="c3-grid c3-grid-lines"><g class="c3-xgrid-lines"></g><g class="c3-ygrid-lines"></g></g><g class="c3-axis c3-axis-x" clip-path="url(https://tabler.github.io/tabler/charts.html#c3-1527575486129-clip-xaxis)" transform="translate(0,222)" style="visibility: visible; opacity: 1;"><text class="c3-axis-x-label" transform="" style="text-anchor: end;" x="284" dx="-0.5em" dy="-0.5em"></text><g class="tick" style="opacity: 1;" transform="translate(24, 0)"><line x1="24" x2="24" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2013</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(72, 0)"><line x1="24" x2="24" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2014</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(119, 0)"><line x1="24" x2="24" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2015</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(166, 0)"><line x1="24" x2="24" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2016</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(214, 0)"><line x1="24" x2="24" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2017</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(261, 0)"><line x1="24" x2="24" y2="0"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2018</tspan></text></g><path class="domain" d="M0,6V0H284V6"></path></g><g class="c3-axis c3-axis-y" clip-path="url(https://tabler.github.io/tabler/charts.html#c3-1527575486129-clip-yaxis)" transform="translate(0,0)" style="visibility: visible; opacity: 1;"><text class="c3-axis-y-label" transform="rotate(-90)" style="text-anchor: end;" x="0" dx="-0.5em" dy="1.2em"></text><g class="tick" style="opacity: 1;" transform="translate(0,222)"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">0</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,197)"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">50</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,172)"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">100</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,147)"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">150</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,122)"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">200</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,97)"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">250</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,72)"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">300</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,47)"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">350</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,22)"><line x2="-6"></line><text x="-9" y="0" style="text-anchor: end;"><tspan x="-9" dy="3">400</tspan></text></g><path class="domain" d="M-6,1H0V222H-6"></path></g><g class="c3-axis c3-axis-y2" transform="translate(284,0)" style="visibility: hidden; opacity: 1;"><text class="c3-axis-y2-label" transform="rotate(-90)" style="text-anchor: end;" x="0" dx="-0.5em" dy="-0.5em"></text><g class="tick" style="opacity: 1;" transform="translate(0,222)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,200)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.1</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,178)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.2</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,156)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.3</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,134)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.4</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,112)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.5</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,90)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.6</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,68)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.7</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,46)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.8</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,24)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">0.9</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(0,1)"><line x2="6" y2="0"></line><text x="9" y="0" style="text-anchor: start;"><tspan x="9" dy="3">1</tspan></text></g><path class="domain" d="M6,1H0V222H6"></path></g></g><g transform="translate(20.5,256.5)" style="visibility: hidden;"><g clip-path="url(https://tabler.github.io/tabler/charts.html#c3-1527575486129-clip-subchart)" class="c3-chart"><g class="c3-chart-bars"></g><g class="c3-chart-lines"></g></g><g clip-path="url(https://tabler.github.io/tabler/charts.html#c3-1527575486129-clip)" class="c3-brush" style="pointer-events: all; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><rect class="background" x="0" width="304" style="visibility: hidden; cursor: crosshair;"></rect><rect class="extent" x="0" width="0" style="cursor: move;"></rect><g class="resize e" transform="translate(0,0)" style="cursor: ew-resize; display: none;"><rect x="-3" width="6" height="6" style="visibility: hidden;"></rect></g><g class="resize w" transform="translate(0,0)" style="cursor: ew-resize; display: none;"><rect x="-3" width="6" height="6" style="visibility: hidden;"></rect></g></g><g class="c3-axis-x" transform="translate(0,0)" clip-path="url(https://tabler.github.io/tabler/charts.html#c3-1527575486129-clip-xaxis)" style="visibility: hidden; opacity: 1;"><g class="tick" style="opacity: 1;" transform="translate(24, 0)"><line x1="24" x2="24" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2013</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(72, 0)"><line x1="24" x2="24" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2014</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(119, 0)"><line x1="24" x2="24" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2015</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(166, 0)"><line x1="24" x2="24" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2016</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(214, 0)"><line x1="24" x2="24" y2="6"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2017</tspan></text></g><g class="tick" style="opacity: 1;" transform="translate(261, 0)"><line x1="24" x2="24" y2="0"></line><text x="0" y="9" transform="" style="text-anchor: middle; display: block;"><tspan x="0" dy=".71em" dx="0">2018</tspan></text></g><path class="domain" d="M0,6V0H284V6"></path></g></g><g transform="translate(0,256)" style="visibility: hidden;"></g><text class="c3-title" x="163" y="0"></text></svg><div class="c3-tooltip-container" style="position: absolute; pointer-events: none; display: none; top: 30.5px; left: 132.5px;"><table class="c3-tooltip"><tbody><tr><th colspan="2">2014</th></tr><tr class="c3-tooltip-name--data3"><td class="name"><span style="background-color:#5eba00"></span>Sales</td><td class="value">200</td></tr><tr class="c3-tooltip-name--data2"><td class="name"><span style="background-color:#f66d9b"></span>Marketing</td><td class="value">130</td></tr><tr class="c3-tooltip-name--data4"><td class="name"><span style="background-color:#467fcf"></span>Sales</td><td class="value">130</td></tr><tr class="c3-tooltip-name--data1"><td class="name"><span style="background-color:#5eba00"></span>Development</td><td class="value">20</td></tr></tbody></table></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
