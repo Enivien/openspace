@@ -17,13 +17,13 @@
         </div>
         <div class="d-flex align-items-center pt-5 mt-auto">
           <ul class="list-inline product-controls hidden-sm hidden-xs">
-            <% if booking.status == true %>
+            <% if booking.status == "Accepted" %>
             <p class="status accepted">Accepted</p>
-            <% elsif booking.status == false %>
+            <% elsif booking.status == "Declined" %>
             <p class="status declined">Declined</p>
             <% else %>
             <%= simple_form_for ([space, booking]) do |f| %>
-            <%= f.select :status, [['Accepted', true],['Declined', false]]%>
+            <%= f.select :status, ['Accepted','Declined']%>
             <br>
             <br>
             <%= f.button :submit, :class => 'btn btn-primary' %>
@@ -69,11 +69,11 @@
         </div>
         <div class="d-flex align-items-center pt-5 mt-auto">
           <ul class="list-inline product-controls hidden-sm hidden-xs">
-            <% if booking.status.nil? %>
+            <% if booking.status == "Pending" %>
             <p class="status pending">Pending</p>
-            <% elsif booking.status == true %>
+            <% elsif booking.status == "Accepted" %>
             <p class="status accepted">Accepted</p>
-            <% elsif booking.status == false %>
+            <% elsif booking.status == "Declined" %>
             <p class="status declined">Declined</p>
             <% end %>
           </ul>

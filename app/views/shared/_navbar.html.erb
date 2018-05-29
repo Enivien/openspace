@@ -21,7 +21,11 @@
   <% if user_signed_in? %>
 
   <!-- Links when logged in -->
+  <% if current_user.first_name.empty? || current_user.last_name.empty? %>
+  <%= link_to "List a Space", edit_profile_path(current_user), class: "btn btn-sm btn-outline-primary margin-right-15" %>
+  <% else %>
   <%= link_to "List a Space", new_space_path, class: "btn btn-sm btn-outline-primary margin-right-15" %>
+  <% end %>
   <%= link_to "Profile", user_path(current_user), class: "btn btn-sm btn-outline-primary margin-right-15" %>
   <%= link_to "Favorites", favorites_path, class: "btn btn-sm btn-outline-primary margin-right-15" %>
 
