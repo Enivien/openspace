@@ -1,7 +1,7 @@
 <div class="wrapper-grey padded">
   <div class="container">
     <div class="card-header">
-      <h2 class="card-title">Your Incoming Booking Requests 🚀</h2>
+      <h2 class="card-title">My Incoming Booking Requests 🚀</h2>
     </div>
     <br>
     <% if current_user.spaces.present? %>
@@ -13,6 +13,7 @@
       <div class="card-body d-flex flex-column">
         <h4><a href="#"><%= link_to booking.space.name, space_path(booking.space)%></a></h4>
         <div class="text-muted">
+               <p>Someone wants to book your space for: <%= booking.booked_activity.split('_').collect(&:capitalize).join(' ') %></p>
         </div>
         <div class="d-flex align-items-center pt-5 mt-auto">
           <ul class="list-inline product-controls hidden-sm hidden-xs">
@@ -63,6 +64,7 @@
           <% else %>
           <%#= raise %>
           <p><%= booking.start_time%> - <%= booking.end_time %></p>
+          <p>Activity: <%= booking.booked_activity.split('_').collect(&:capitalize).join(' ') %></p>
           <% end %>
         </div>
         <div class="d-flex align-items-center pt-5 mt-auto">
@@ -118,12 +120,12 @@
             <textarea class="form-control" rows="5"><%= current_user.bio %></textarea>
           </div>
           <div class="form-group">
-            <label class="form-label">Password</label>
-            <input type="password" class="form-control" value="password">
+<!--             <label class="form-label">Password</label>
+            <input type="password" class="form-control" value="password"> -->
             <span style="opacity: 1; background-size: 19px 13px; left: 648px; top: 402.5px; width: 19px; min-width: 19px; height: 13px; position: absolute; background-image: url(); background-repeat: no-repeat; background-position: 0px 0px; border: none; display: inline; visibility: visible; z-index: auto;"></span></div>
-            <div class="form-footer">
+<!--             <div class="form-footer">
               <button class="btn btn-primary btn-block">Save</button>
-            </div>
+            </div> -->
           </form>
         </div>
       </div>

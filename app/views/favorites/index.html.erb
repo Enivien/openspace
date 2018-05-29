@@ -1,6 +1,14 @@
 <div class="content" style="display: flex">
   <div class="container">
-    <h1>My Favorites</h1>
+    <br>
+    <h1 class="text-center">My Favorites</h1>
+
+    <% if @favorites.empty? %>
+    <br>
+    <br>
+    <h3 class="text-center">You have no favorites 😩</h3>
+    <h3 class="text-center"><%= link_to "Head back to spaces", spaces_path %></h3>
+    <% else %>
     <div class="row row-cards row-deck">
       <% @favorites.each do |favorite| %>
       <div class="col-sm-6 col-xl-3">
@@ -41,5 +49,6 @@
   </div>
 </div>
 <div id="map" data-markers="<%= @markers.to_json %>">
+  <% end %>
 </div>
 </div>
