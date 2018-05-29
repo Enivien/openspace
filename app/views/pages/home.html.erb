@@ -136,8 +136,9 @@
   <div class="container-popular">
 
     <div class="text-center">
-     <h1> Our most popular spaces
+     <h1 class="page-title"> Our most popular spaces
      </h1>
+     <br>
      <% @spaces.sample(6).each do |space| %>
      <div class="col-sm-6 col-xl-3">
       <div class="card">
@@ -173,7 +174,7 @@
     </div>
   </div>
   <% end %>
-  <h2> Choose from theses selected place to create, collaborate or celebrate!</h2>
+  <h2 class="page-title"> Choose from theses selected place to create, collaborate or celebrate!</h2>
 </div>
 <div class="row">
   <%# @favourites.each do |favorite| %>
@@ -195,8 +196,8 @@
   <div class="container-hosts">
     <div class="text-center">
 
-     <h1> Meet our hosts</h1>
-     <h2> See what they can say about their open space-exprience</h2>
+     <h1 class="page-title"> Meet our hosts</h1>
+     <h2 class="page-title"> See what they can say about their open space-exprience</h2>
    </div>
    <div class="row">
 
