@@ -3,6 +3,7 @@ class Booking < ApplicationRecord
   belongs_to :space
   has_one :activity, through: :space
   before_save :set_total_price
+  has_many :reviews, dependent: :destroy
 
   def set_total_price
    time = (end_time - start_time) / 3600
