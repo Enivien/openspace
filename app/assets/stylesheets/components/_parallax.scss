@@ -3,13 +3,13 @@
     // background-image: url("example8.jpg.jpg");
 
     /* Full height */
-    height: 50%;
+    height: 45%;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover !important;
   }
 
 .mask {
@@ -20,6 +20,7 @@
     width: 100%;
     // height: 100%;
     background-repeat: no-repeat;
+     background-size: cover !important;
 
     /* Create the parallax scrolling effect */
   //   background-attachment: fixed;
