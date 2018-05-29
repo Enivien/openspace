@@ -31,20 +31,20 @@
 <div class="header-space">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+      <div class="col-xs-12 col-sm-6 sm-offset-1">
         <div class="header-space-details">
           <div class="header-space-owner">
           </div>
           <div class="header-space-name">
             <h1><%= @space.name %></h1>
             <p><%= @space.location %></p>
-            <p><%#= @space.user.first_name %>'s space</p>
+            <p><%= @space.user.first_name %>'s space</p>
             <!-- CHECK ON SYNTAX AVG RATING OR ADD AVG RATING TO SPACE -->
             <p class="rating"><%#= @space.reviews.rating.average * "*" %></p>
           </div>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+      <div class="col-xs-12 col-sm-4 sm-offset-1">
         <div class="booking-form" style="align-content: right">
          <%= render 'shared/form_booking', booking: @booking, space: @space, activity: @activity %>
          </div>
@@ -55,7 +55,7 @@
 <div id="space-description">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+      <div class="col-xs-12 col-sm-10 sm-offset-1">
         <h2>About this space</h2>
         <p>
           <%= @space.description %>
@@ -102,3 +102,23 @@
     </div>
   </div>
 </div>
+<!-- <div id="space-reviews">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 sm-offset-1">
+        <h3>Reviews</h3>
+        <#% if @space.reviews.present? %>
+          <#% @space.reviews.each do |review| %>
+            <div class="product">
+              <div class='product-body'>
+                <h3><%#= link_to review.content, space_path(review) %></h3>
+                <p>Went to space <%#= review.booking.start_time %> - <%#= review.booking.end_time %></p>
+              </div>
+            </div>
+          <#% end %>
+        <#% end %>
+      </div>
+    </div>
+  </div>
+</div>
+ -->
