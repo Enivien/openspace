@@ -36,4 +36,8 @@ Rails.application.routes.draw do
     resources :messages, only: [ :index, :show, :new, :create ]
       resources :replies, only: [ :new, :create ]
   end
+
+  resources :bookings, only: [] do
+    resources :payments, only: [:new, :create]
+  end
 end

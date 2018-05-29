@@ -1,3 +1,5 @@
+<!-- Showing card -->
+
 <div class="card-header">
       <h2 class="card-title">My Outgoing Requests 🚀</h2>
     </div>
@@ -18,11 +20,15 @@
           <p>Activity: <%= booking.booked_activity.split('_').collect(&:capitalize).join(' ') %></p>
           <% end %>
         </div>
+
+<!-- Changing state and payment -->
+
         <div class="d-flex align-items-center pt-5 mt-auto">
           <ul class="list-inline product-controls hidden-sm hidden-xs">
             <% if booking.status == "Pending" %>
             <p class="status pending">Pending</p>
             <% elsif booking.status == "Accept & request payment" %>
+            <%= link_to "Pay now",new_booking_payment_path(booking), class: "btn btn-primary" %>
             <!-- BUTTON payment link > paymentscontroller > create method > stripe api > if accepected then update booking status-->
             <p class="status accepted">Accepted</p>
             <% elsif booking.status == "Declined" %>
