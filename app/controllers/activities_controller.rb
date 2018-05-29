@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
     @space = Space.find(params[:space_id])
-    @activity.space_id = @space
+    @activity.space = @space
 
     if @activity.save
       redirect_to space_path(@space)
