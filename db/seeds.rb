@@ -30,7 +30,8 @@ Space.destroy_all
    price_per_hour: (100..1000).to_a.sample,
    user_id: 1,
    description: Faker::Lorem.sentence(4),
-   picture: "https://picsum.photos/200/300/?random"
+   picture: "https://picsum.photos/200/300/?random",
+   activity_id: 1
    )
  space.save!
  p space.name
