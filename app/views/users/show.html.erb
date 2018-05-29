@@ -19,6 +19,8 @@
         <% else %>
         <%= simple_form_for ([space, booking]) do |f| %>
         <%= f.select :status, [['Accepted', true],['Declined', false]]%>
+        <br>
+        <br>
         <%= f.button :submit, :class => 'btn btn-primary' %>
         <% end %>
         <% end %>
@@ -72,7 +74,9 @@
       <div class="col-xs-12 col-sm-6 col-md-4">
         <%= link_to space_path(space) do %>
         <% if space.pictures.present? %>
-        <div class="card" style="background-image: url('<%= cl_image_path space.pictures[0].path, crop: :fill %>')">
+        <div class="card" style="height: 100px;background-image: url('<%= cl_image_path space.pictures[0].path%>')">
+           <div class="card-price">
+            </div>
           <% else %>
           <div class="card" style="background-image: url('https://media.tenor.com/images/baa51bc6187cb2fc286a3d3582061f12/tenor.png')">
             <% end %>
