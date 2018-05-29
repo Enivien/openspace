@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     @space = Space.find(params[:space_id])
     @booking = Booking.new(booking_params)
     @booking.space = @space
-    @booking.total_price = @booking.set_total_price
+    @booking.amount = @booking.set_amount
     @booking.user = current_user
     if @booking.save
       flash[:notice] = "You've booked a space"
