@@ -68,10 +68,9 @@ ActiveRecord::Schema.define(version: 2018_05_29_074138) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "guest"
+    t.string "booked_activity"
     t.integer "amount_cents", default: 0, null: false
     t.string "status", default: "Pending"
-    t.string "booked_activity"
-
     t.index ["space_id"], name: "index_bookings_on_space_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
