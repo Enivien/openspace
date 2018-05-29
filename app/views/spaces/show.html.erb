@@ -102,23 +102,23 @@
     </div>
   </div>
 </div>
-<!-- <div id="space-reviews">
+<div id="space-reviews">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-10 sm-offset-1">
         <h3>Reviews</h3>
-        <#% if @space.reviews.present? %>
-          <#% @space.reviews.each do |review| %>
+        <% if @space.reviews.present? %>
+          <% @space.reviews.each do |review| %>
             <div class="product">
               <div class='product-body'>
-                <h3><%#= link_to review.content, space_path(review) %></h3>
-                <p>Went to space <%#= review.booking.start_time %> - <%#= review.booking.end_time %></p>
+                <h3><%= link_to review.content, space_path(review) %></h3>
+                <p>Went to space <%= review.booking.start_time %> - <%= review.booking.end_time %></p>
               </div>
             </div>
-          <#% end %>
-        <#% end %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
- -->
+

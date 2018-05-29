@@ -5,11 +5,13 @@
   </div>
   <div class="form-group">
     <label class="form-label">Planned activity</label>
-      <div class="form-group select optional booking_activity"><select class="form-control custom-select optional" name="booking[activity]" id="booking_activity"><% @activities.each do |activity| %>
-        <option value="<%= activity %>"><%= activity %></option>
+      <div class="form-group select optional booking_activity">
+        <select class="form-control custom-select optional" name="booking[booked_activity]" id="booking_activity">
+          <% @activities.each do |activity| %>
+        <option value="<%= activity %>"><%= activity.split('_').collect(&:capitalize).join(' ') %></option>
         <% end %>
-      </select></div>
-
+      </select>
+    </div>
   </div>
       <div class="form-group">
         <label class="form-label">Start</label>
@@ -32,7 +34,7 @@
       </div>
 
   <div class="form-group">
-    <label class="form-label">Total: <%= @booking.total_price %></label>
+    <label class="form-label">Total: <%= @booking.amount %></label>
   </div>
   <div class="form-group mb-0">
     <%=  submit_tag 'Book it',

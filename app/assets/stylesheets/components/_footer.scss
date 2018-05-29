@@ -1,0 +1,20 @@
+.footer {
+  background-color: white;
+  color: $light-gray;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.footer h3 {
+  color: $gray;
+}
+
+.footer .fa-heart {
+  color: #D23333;
+}
