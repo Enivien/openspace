@@ -19,8 +19,6 @@
         <% else %>
         <%= simple_form_for ([space, booking]) do |f| %>
         <%= f.select :status, [['Accepted', true],['Declined', false]]%>
-        <br>
-        <br>
         <%= f.button :submit, :class => 'btn btn-primary' %>
         <% end %>
         <% end %>
@@ -48,7 +46,8 @@
           <%= link_to "Review this past booking ❤️", new_booking_review_path(booking) %>
         </p>
         <% else %>
-        <p><%= booking.start_date%> - <%= booking.end_date %></p>
+        <%#= raise %>
+        <p><%= booking.start_time%> - <%= booking.end_time %></p>
         <% end %>
       </div>
       <ul class="list-inline product-controls hidden-sm hidden-xs">
@@ -65,7 +64,6 @@
     <% end %>
   </div>
 </div>
-
 <div class="wrapper-grey padded">
   <div class="container">
     <h3 class="text-center">Your spaces 🚀</h3>
@@ -74,7 +72,7 @@
       <div class="col-xs-12 col-sm-6 col-md-4">
         <%= link_to space_path(space) do %>
         <% if space.pictures.present? %>
-        <div class="card" style="background-image: url('<%= cl_image_path favorite.space.pictures[0].path, crop: :fill %>')">
+        <div class="card" style="background-image: url('<%= cl_image_path space.pictures[0].path, crop: :fill %>')">
           <% else %>
           <div class="card" style="background-image: url('https://media.tenor.com/images/baa51bc6187cb2fc286a3d3582061f12/tenor.png')">
             <% end %>
@@ -82,22 +80,22 @@
               <%= space.name %>
             </div>
             <div class="card-price">
-           </div>
-         </div>
-       </div>
-       <% end %>
-       <% end %>
-     </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
 
       <div class="bottomgroup">
         <div class="bottombuttons">
 
-       <%= link_to 'Add a New space', new_space_path, class: "text-center btn btn-primary" %>
+         <%= link_to 'Add a New space', new_space_path, class: "text-center btn btn-primary" %>
 
-       <%= link_to 'Back to Spaces', spaces_path, class: "text-center btn btn-secondary" %>
-       <p></p>
+         <%= link_to 'Back to Spaces', spaces_path, class: "text-center btn btn-secondary" %>
+         <p></p>
        </div>
-    </div>
+     </div>
    </div>
  </div>
 </div>
