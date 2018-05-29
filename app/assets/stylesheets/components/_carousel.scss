@@ -8,3 +8,13 @@
   height: 50vh;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
 }
+
+.carousel, .carousel-inner, .item {
+   height:100%;
+   max-height:600px;
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+   position: relative;
+   bottom: 145%;
+}
