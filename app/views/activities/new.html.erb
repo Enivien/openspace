@@ -6,7 +6,7 @@
         <%= simple_form_for [@space, @activity] do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs">
+        <div class="form-inputs text-center">
           <%= f.input :offsite_meeting %>
           <%= f.input :workshop %>
           <%= f.input :photo_shoot %>
@@ -15,7 +15,7 @@
           <%= f.input :office_party %>
           <%= f.input :product_launch %>
         </div>
-        <div class="form-actions ">
+        <div class="form-actions text-center">
           <%= f.button :submit, "Submit" %>
         </div>
         <% end %>
