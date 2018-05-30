@@ -1,10 +1,10 @@
-<br>
 <div class="container">
-<!--   <div class="row">
-    <div class="col-xs-4 col-xs-offset-4">
+ <div class="row">
+  <div class="col-sm-12 col-md-3 offset-md-4">
+    <h2 class="margin-top-60">List a New Space! </h2>
+    <div class="wrapper-grey padded">
 
-      <div class="fullpage"> -->
-        <h1 class='text-center'>List a New Space!</h1>
+      <div class="fullpage">
         <!-- app/views/articles/_form.html.erb -->
         <%= simple_form_for @space, input_html: { class: "dropzone"} do |f| %>
         <!-- [...] -->
@@ -19,7 +19,9 @@
         <%= f.input :pictures , as: :attachinary, input_html: {class: "form-control"} %>
         <%= f.button :submit, :class => 'btn btn-primary' %>
         <% end %>
-<!--       </div>
+
+      </div>
     </div>
-  </div> -->
+  </div>
+</div>
 </div>
