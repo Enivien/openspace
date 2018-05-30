@@ -20,8 +20,15 @@
               <% end %>
             </ul>
             <div class="text-center mt-6">
-              <h4 class="status accepted"><%= @booking.status %></h4>
-              <%= link_to "Check updated status on your profile!", user_path(current_user) %>
+              <%= form_tag booking_payments_path(@booking) do %>
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-name="My booking"
+              data-email="<%= current_user.email %>"
+              data-description="Booking <%= @booking.space.name %>"
+              data-amount="<%= @booking.amount_cents %>"
+              data-currency="<%= @booking.amount.currency %>"></script>
+              <% end %>
             </div>
           </div>
         </div>

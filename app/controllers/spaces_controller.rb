@@ -26,11 +26,15 @@ class SpacesController < ApplicationController
     end
 
     @favorite = Favorite.new
+
+    @activities = ["offsite_meeting", "workshop", "photo_shoot", "film_shoot", "corporate_event", "office_party", "product_launch"]
   end
 
   def show
     @booking = Booking.new
     @activities = @space.activities
+
+    @spaces = Space.all
   end
 
   def new
