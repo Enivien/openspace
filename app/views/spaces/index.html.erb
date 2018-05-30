@@ -1,14 +1,15 @@
   <div class="search-container" style="display: block">
     <div class="form-group">
       <div class="input-group">
-        <select type="text" class="form-control" name="activities"placeholder="Activity">
+        <form action="/spaces">
+        <select type="text" value="nil" class="form-control" name="query[activities]"placeholder="Activity"><option>City</option>
           <% @activities.each do |activity| %>
           <option value="<%= activity %>"><%= activity.split('_').collect(&:capitalize).join(' ') %>
           </option>
           <% end %>
           <span class="input-group-append">
-            <input id="space_location" type="text" class="form-control" placeholder="Search location...">
-            <select type="integer" class="form-control" placeholder="Search Attendees...">
+          <input id="space_location" type="text" class="form-control" placeholder="Location" name="query[location]" value="Amsterdam">
+            <select name="query[capacity]" type="integer" class="form-control" placeholder="Attendees">
               <option value="nil">Attendees
               </option>
               <option value="10">10+
@@ -19,9 +20,29 @@
               </option>
               <option value="100">100+
               </option>
-              <input type="text" class="form-control" placeholder="Search Price...">
-              <input type="text" class="form-control" placeholder="Search Filters...">
+            </select>
+            <select type="integer" name="query[price_per_hour]"class="form-control" placeholder="Price per hour">
+              <option value="nil">Price per hour
+              </option>
+              <option value="10">Under $80
+              </option>
+              <option value="20">$80 - $150
+              </option>
+              <option value="50">$150 - $300
+              </option>
+              <option value="100">$300 and up
+              </option>
+            </select>
+            <select type="text" name="query[amenities]" class="form-control" placeholder="More filters" value="nil">
+              <option value="nil" selected>Amenity</option>
+                  <% @amenities.each do |amenity| %>
+              <option value="<%= amenity %>"><%= amenity.split('_').collect(&:capitalize).join(' ') %>
+              </option>
+              <% end %>
+            </select>
+            <input type="submit" action="/spaces" class="btn btn-primary">
             </span>
+            </form>
           </div>
         </div>
       </div>
