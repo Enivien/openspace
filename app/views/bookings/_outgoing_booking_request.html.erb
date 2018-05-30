@@ -28,9 +28,7 @@
             <% if booking.status == "Pending" %>
             <p class="status pending">Pending</p>
             <% elsif booking.status == "Accept & request payment" %>
-            <%= link_to "Pay now",new_booking_payment_path(booking), class: "btn btn-primary" %>
-            <!-- BUTTON payment link > paymentscontroller > create method > stripe api > if accepected then update booking status-->
-            <p class="status accepted">Accepted</p>
+            <%= link_to "Accepted! Pay Now",new_booking_payment_path(booking), class: "btn btn-primary"%>
             <% elsif booking.status == "Declined" %>
             <p class="status declined">Declined</p>
             <% end %>
