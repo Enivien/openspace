@@ -1,39 +1,41 @@
 <div><!-- TOP CAROUSSEL INCL SEARCH FIELD
   -->
   <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "example1.jpg" %>');">
-    <div>
-      <div class="margin-bottom-250">
-        <h1>
+
+      <div class="margin-bottom-15">
+        <h1 style="text-align: left;">Find spaces for
           <span id="banner-typed-text"></span>
         </h1>
-        <h2>Discover & Book Unique Spaces for Your Upcoming Activity
+        <h2>Book unique and inspiring spaces directly from local host
         </h2>
       </div>
-      <div class="input-group" id="input-group-landingpage">
-        <%= form_tag spaces_path, method: :get do %>
+
+      <div class="search">
+      <%= form_tag spaces_path, method: :get do %>
+      <div class="input-group search-form-help">
         <!--       <input type="text" id="space_location" class="form-control" placeholder="Search in your city..."> -->
         <!--         <input class="form-control" placeholder="Search for activites ..."> -->
-        <span class="input-group-append">
-          <!-- <button class="btn btn-primary" type="button">Go!</button> -->
-        </div>
         <%= text_field_tag :query,
         params[:query],
         class: "form-control",
           id: "space_location",
           placeholder: "Search in your favorite city.."
           %>
-          <br>
-          <%= submit_tag "Search!", :class => 'btn btn-primary-search btn-lg' %>
+        <span class="input-group-append">
+          <%= submit_tag "Search", :class => 'btn btn-primary btn-square' %>
           <% end %>
+          <!-- <button class="btn btn-primary" type="button">Go!</button> -->
         </span>
       </div>
     </div>
 
+  </div>
+
 
   <!-- CREDENTIALS
   -->
-  <div class="full-width" style="padding-left: 20px; padding-right: 20px;"><%= image_tag "credentials.jpg", height: 40, width: 3000;%>
-  </div>
+<!--   <div class="full-width" style="padding-left: 20px; padding-right: 20px;"><%#= image_tag "credentials.jpg", height: 40, width: 3000;%>
+  </div> -->
 
 
 
@@ -48,9 +50,7 @@
       </div>
     </div>
 
-
     <div class="row">
-
       <div class="col-xs-12 col-sm-4">
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path "film-shoot.jpg" %>');">
           <div class="card-description">
