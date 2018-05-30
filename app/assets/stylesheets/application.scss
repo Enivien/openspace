@@ -6,11 +6,13 @@
 // External libraries
 // @import "bootstrap-sprockets";
 @import "tabler/variables";
+@import "config/tabler-project-variables";
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "tabler";
 @import "tabler.plugins";
+
 @import "tempusdominus-bootstrap-4.css";
 
 // Your CSS partials
