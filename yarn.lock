@@ -5485,6 +5485,10 @@ svgo@^0.7.0:
     sax "~1.2.1"
     whet.extend "~0.9.9"
 
+tabler-ui@^0.0.32:
+  version "0.0.32"
+  resolved "https://registry.yarnpkg.com/tabler-ui/-/tabler-ui-0.0.32.tgz#35082e1604c134ce56fd12b49e96483814ed5248"
+
 tabler@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/tabler/-/tabler-1.0.0.tgz#3d47cbd1db258d7941deb560c998a35bb0e99590"
