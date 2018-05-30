@@ -20,6 +20,7 @@ class Space < ApplicationRecord
   has_many :reviews, through: :bookings, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
 
@@ -31,6 +32,14 @@ class Space < ApplicationRecord
     activities = self.activity
 
     activities.attributes.select do |key, value|
+      key if value == true
+    end.keys
+  end
+
+  def amenities
+    amenities = self.amenity
+
+    amenities.attributes.select do |key, value|
       key if value == true
     end.keys
   end

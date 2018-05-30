@@ -31,6 +31,8 @@ class SpacesController < ApplicationController
   def show
     @booking = Booking.new
     @activities = @space.activities
+
+    @spaces = Space.all
   end
 
   def new
