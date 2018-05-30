@@ -1,7 +1,9 @@
-<br>
 <div class="container">
-    <h2 class="text-center">Add your amenities</h2>
+ <div class="row">
+  <div class="col-sm-12 col-md-3 offset-md-4">
+    <h2 class="margin-top-60">Add your amenities </h2>
     <div class="wrapper-grey padded">
+
       <div class="fullpage">
         <%= simple_form_for [@space, @amenity] do |f| %>
         <%= f.error_notification %>
@@ -22,5 +24,7 @@
         </div>
         <% end %>
       </div>
+    </div>
   </div>
+</div>
 </div>
