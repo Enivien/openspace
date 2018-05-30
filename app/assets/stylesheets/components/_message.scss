@@ -45,11 +45,11 @@
   font-weight: bold;
 }
 .status.accepted {
-  color: #04A366;
+  color: $green;
 }
 .status.declined {
-  color: red;
+  color: $red;
 }
 .status.pending {
-  color: lightgrey;
+  color: $dark-yellow;
 }
