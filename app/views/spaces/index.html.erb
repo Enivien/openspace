@@ -2,7 +2,7 @@
     <div class="form-group">
       <div class="input-group">
         <form action="/spaces">
-        <select type="text" value="nil" class="form-control" name="query[activities]"placeholder="Activity"><option>City</option>
+        <select type="text" value="nil" class="form-control" name="query[activities]"placeholder="Activity"><option>Activity</option>
           <% @activities.each do |activity| %>
           <option value="<%= activity %>"><%= activity.split('_').collect(&:capitalize).join(' ') %>
           </option>
@@ -34,7 +34,7 @@
               </option>
             </select>
             <select type="text" name="query[amenities]" class="form-control" placeholder="More filters" value="nil">
-              <option value="nil" selected>Amenity</option>
+              <option value="nil" selected>Amenities</option>
                   <% @amenities.each do |amenity| %>
               <option value="<%= amenity %>"><%= amenity.split('_').collect(&:capitalize).join(' ') %>
               </option>
