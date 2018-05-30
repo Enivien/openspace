@@ -1,7 +1,7 @@
   <div class="search-container" style="display: block">
     <div class="form-group">
       <div class="input-group">
-        <form action="/spaces">
+        <form action="/spaces" class="input-group">
         <select type="text" value="nil" class="form-control" name="query[activities]"placeholder="Activity"><option>Activity</option>
           <% @activities.each do |activity| %>
           <option value="<%= activity %>"><%= activity.split('_').collect(&:capitalize).join(' ') %>
@@ -34,13 +34,13 @@
               </option>
             </select>
             <select type="text" name="query[amenities]" class="form-control" placeholder="More filters" value="nil">
-              <option value="nil" selected>Amenities</option>
+              <option value="nil" selected>More filters</option>
                   <% @amenities.each do |amenity| %>
               <option value="<%= amenity %>"><%= amenity.split('_').collect(&:capitalize).join(' ') %>
               </option>
               <% end %>
             </select>
-            <input type="submit" action="/spaces" class="btn btn-primary">
+            <input type="submit" value="Filter" action="/spaces" class="btn btn-primary btn-square" style="width: 10%">
             </span>
             </form>
           </div>
