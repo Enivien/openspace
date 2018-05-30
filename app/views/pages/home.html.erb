@@ -1,80 +1,145 @@
-<!-- TOP CAROUSSEL INCL SEARCH FIELD
--->
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "example1.jpg" %>');">
-  <div>
-    <div class="margin-bottom-250">
-      <h1>
-        <span id="banner-typed-text"></span>
-      </h1>
-      <h2>Discover & Book Unique Spaces for Your Upcoming Activity
-      </h2>
-    </div>
-    <div class="input-group" id="input-group-landingpage">
-      <%= form_tag spaces_path, method: :get do %>
-      <!--       <input type="text" id="space_location" class="form-control" placeholder="Search in your city..."> -->
-      <!--         <input class="form-control" placeholder="Search for activites ..."> -->
-      <span class="input-group-append">
-        <!-- <button class="btn btn-primary" type="button">Go!</button> -->
-      </div>
-      <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-        id: "space_location",
-        placeholder: "Search in your favorite city.."
-        %>
-        <br>
-        <%= submit_tag "Search!", :class => 'btn btn-primary-search btn-lg' %>
-        <% end %>
-      </span>
-    </div>
-  </div>
-
-
-<!-- CREDENTIALS
--->
-<div class="full-width" style="padding-left: 20px; padding-right: 20px;"><%= image_tag "credentials.jpg", height: 40, width: 3000;%>
-</div>
-
-
-
-<!-- CATEGORIES CA 4 ROWS WITH 3 CARDS EACH  -->
-
-<div class="container">
-
-  <div class="flexgroup">
+<div><!-- TOP CAROUSSEL INCL SEARCH FIELD
+  -->
+  <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "example1.jpg" %>');">
     <div>
-      <h1>Book a space that inspires</h1>
-      <h2>Be inspired to meet, create, and innovate.</h2>
+      <div class="margin-bottom-250">
+        <h1>
+          <span id="banner-typed-text"></span>
+        </h1>
+        <h2>Discover & Book Unique Spaces for Your Upcoming Activity
+        </h2>
+      </div>
+      <div class="input-group" id="input-group-landingpage">
+        <%= form_tag spaces_path, method: :get do %>
+        <!--       <input type="text" id="space_location" class="form-control" placeholder="Search in your city..."> -->
+        <!--         <input class="form-control" placeholder="Search for activites ..."> -->
+        <span class="input-group-append">
+          <!-- <button class="btn btn-primary" type="button">Go!</button> -->
+        </div>
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+          id: "space_location",
+          placeholder: "Search in your favorite city.."
+          %>
+          <br>
+          <%= submit_tag "Search!", :class => 'btn btn-primary-search btn-lg' %>
+          <% end %>
+        </span>
+      </div>
     </div>
+
+
+  <!-- CREDENTIALS
+  -->
+  <div class="full-width" style="padding-left: 20px; padding-right: 20px;"><%= image_tag "credentials.jpg", height: 40, width: 3000;%>
   </div>
 
-  <div class="row flexgroup">
-    <%# @categories.each do |category| %>
-    <div class="col-xs-12 col-sm-4 ">
-      <div class="flexelement">
-        <div class="card">
-          THE HTML OF THE CATEGORIES SHOULD BE INSERTED HERE !
+
+
+  <!-- CATEGORIES CA 4 ROWS WITH 3 CARDS EACH  -->
+
+  <div class="container">
+
+    <div class="flexgroup">
+      <div>
+        <h1>Book a space that inspires</h1>
+        <h2>Be inspired to meet, create, and innovate.</h2>
+      </div>
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path "film-shoot.jpg" %>');">
+          <div class="card-description">
+            <h1>Film Shootings</h1>
+            <a class="card-link" href="#"></a>
+          </div>
         </div>
       </div>
-      <%# end %>
+
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path "corporate-event.jpg" %>');">
+          <div class="card-description">
+            <h1>Corporate Events</h1>
+            <a class="card-link" href="#"></a>
+          </div>
+        </div>
+       </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path "office-party.jpg" %>');">
+          <div class="card-description">
+            <h1>Office Parties</h1>
+            <a class="card-link" href="#"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path "product-launch.jpg" %>');">
+          <div class="card-description">
+            <h1>Product Launches</h1>
+            <a class="card-link" href="#"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path "offsite-meeting.jpg" %>');">
+          <div class="card-description">
+            <h1>Offsite Meetings</h1>
+            <a class="card-link" href="#"></a>
+          </div>
+        </div>
+       </div>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path "workshop.jpg" %>');">
+          <div class="card-description">
+            <h1>Workshops</h1>
+            <a class="card-link" href="#"></a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
 
-<!-- HOW IT WORKS: 3 SYMBOLS + TITLE + SUB-HEADLINE
--->
-<div class="container">
-  <div class="margin-bottom-60">
-    <div class="row">
+
+
+
+  <!-- HOW IT WORKS: 3 SYMBOLS + TITLE + SUB-HEADLINE
+  -->
+  <div class="container margin-top-40">
+    <div class="margin-bottom-60">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 ">
+         <div class="icons">
+          <i class="fas fa-map-marker-alt fa-3x"></i>
+          <div class="margin-top-30">
+            <h2>
+              Find the perfect space
+            </h2>
+            <p >
+              Browse our marketplace and customize your search to your criteria.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <div class="col-xs-12 col-sm-4 ">
        <div class="icons">
-        <i class="fas fa-map-marker-alt fa-3x"></i>
+        <i class="far fa-handshake fa-3x"></i>
         <div class="margin-top-30">
           <h2>
-            Find the perfect space
+            Book it with ease
           </h2>
-          <p >
-            Browse our marketplace and customize your search to your criteria.
+          <p>
+            Once you find a perfect space, you can message the owner to ask about details and reserve it.
           </p>
         </div>
       </div>
@@ -82,58 +147,46 @@
 
     <div class="col-xs-12 col-sm-4 ">
      <div class="icons">
-      <i class="far fa-handshake fa-3x"></i>
+      <i class="fas fa-money-check-alt fa-3x"></i>
       <div class="margin-top-30">
-        <h2>
-          Book it with ease
-        </h2>
-        <p>
-          Once you find a perfect space, you can message the owner to ask about details and reserve it.
-        </p>
-      </div>
+       <h2>
+        Easy Checkout with Stripe
+      </h2>
+      <p>
+        Pay online through our easy-to-use payment system and create a lasting impression!
+      </p>
     </div>
   </div>
-
-  <div class="col-xs-12 col-sm-4 ">
-   <div class="icons">
-    <i class="fas fa-money-check-alt fa-3x"></i>
-    <div class="margin-top-30">
-     <h2>
-      Easy Checkout with Stripe
-    </h2>
-    <p>
-      Pay online through our easy-to-use payment system and create a lasting impression!
-    </p>
   </div>
-</div>
-</div>
 
-</div>
-</div>
-</div>
-<!-- BUSINESS CLASS
--->
-<!--
-  REUSE THE BANNER AND RESIZE WIDTH AND HEIGHT, ADD BUTTON -->
 
-  <div class="full-height">
-    <div class="parallax banner ", style="background-image: url('<%= image_path "example8.jpg" %>')";>
-      <div class="mask", style="background-image: url('<%= image_path "mask.png" %>')";>
-        <div class="banner-content flexcolumn">
+  </div>
+  </div>
+  </div>
+  <!-- BUSINESS CLASS
+  -->
+  <!--
+    REUSE THE BANNER AND RESIZE WIDTH AND HEIGHT, ADD BUTTON -->
 
-          <h2 class="margin-top-300">Exclusive access for corporate clients</h2>
-          <button class="btn btn-primary margin-bottom-30" type="button">Learn more</button>
+    <div class="full-height">
+      <div class="parallax banner ", style="background-image: url('<%= image_path "example8.jpg" %>')";>
+        <div class="mask", style="background-image: url('<%= image_path "mask.png" %>')";>
+          <div class="banner-content flexcolumn">
+
+            <h2 class="margin-top-300">Exclusive access for corporate clients</h2>
+            <button class="btn btn-primary margin-bottom-30" type="button">Learn more</button>
+
+          </div>
 
         </div>
-
       </div>
     </div>
-  </div>
 
-<!-- WHATS POPULAR
--->
-<div class="container">
-  <div class="container-popular">
+  <!-- WHATS POPULAR
+  -->
+  <div class="container">
+    <div class="container-popular margin-top-30">
+
 
     <div class="text-center">
      <h1 class="page-title"> Our most popular spaces
@@ -174,6 +227,7 @@
       </div>
     </div>
   </div>
+
   <% end %>
   <h2 class="page-title"> Choose from theses selected place to create, collaborate or celebrate!</h2>
 </div>
@@ -189,47 +243,51 @@
 </div>
 
 
-<!-- MEET OUR HOSTS
--->
+  <!-- MEET OUR HOSTS
+  -->
 
 
-<div class="container">
-  <div class="container-hosts">
-    <div class="text-center">
+  <div class="container">
+    <div class="container-hosts">
+      <div class="text-center">
+
 
      <h1 class="page-title"> Meet our hosts</h1>
      <h2 class="page-title"> See what they can say about their open space-exprience</h2>
    </div>
    <div class="row">
 
-    <%# @users.each do |user| %>
-    <div class="col-xs-12 col-sm-4">
 
-      <div class="hosts-interview-video-card">
+      <%# @users.each do |user| %>
+      <div class="col-xs-12 col-sm-4">
+
+        <div class="hosts-interview-video-card">
+        </div>
+      </div>
+      <%# end %>
+    </div>
+  </div>
+  </div>
+
+
+  <!--
+    RENT OUT YOUR SPACE
+  -->
+  <!-- INSERT BANNER , FLEXBOX; JUSTIFY CENTER , ALIGN ITEMS CENTER -->
+
+  <div class="banner " style="background-image: url('<%= image_path "example2.jpg", height: 350 %>');">
+    <div class="banner-content flexgroup">
+      <div class="flexelement flexcolumn">
+        <h1 class="margin-top-150">Rent a space out yourself</h1>
+        <h2>Generate earnings with the open space rental plattform. <br>
+          Our Admin-Dashboard makes it easy to overview bookings and manage your space.
+        </h2>
+        <button class="btn btn-primary margin-top-40" type="button">List your open space!</button>
       </div>
     </div>
-    <%# end %>
   </div>
-</div>
-</div>
 
+  <br>
 
-<!--
-  RENT OUT YOUR SPACE
--->
-<!-- INSERT BANNER , FLEXBOX; JUSTIFY CENTER , ALIGN ITEMS CENTER -->
-
-<div class="banner " style="background-image: url('<%= image_path "example2.jpg", height: 350 %>');">
-  <div class="banner-content flexgroup">
-    <div class="flexelement flexcolumn">
-      <h1 class="margin-top-150">Rent a space out yourself</h1>
-      <h2>Generate earnings with the open space rental plattform. <br>
-        Our Admin-Dashboard makes it easy to overview bookings and manage your space.
-      </h2>
-      <button class="btn btn-primary margin-top-40" type="button">List your open space!</button>
-    </div>
+  <%# end %>
   </div>
-</div>
-
-<br>
-
