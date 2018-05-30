@@ -1,16 +1,64 @@
-<h1>Book <%= @booking.space.name %></h1>
-<%= form_tag booking_payments_path(@booking) do %>
-  <article>
-    <label class="amount">
-      <span>Amount: <%= humanized_money_with_symbol(@booking.amount) %></span>
-    </label>
-  </article>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-name="My booking"
-    data-email="<%= current_user.email %>"
-    data-description="Booking <%= @booking.space.name %>"
-    data-amount="<%= @booking.amount_cents %>"
-    data-currency="<%= @booking.amount.currency %>"></script>
-<% end %>
+<br>
+<div class="wrapper-grey padded">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-status bg-blue"></div>
+          <div class="card-body text-center">
+            <div class="card-category"><%= @booking.space.name %></div>
+            <div class="display-3 my-4 text-success"><%= humanized_money_with_symbol(@booking.amount) %></div>
+            <ul class="list-unstyled leading-loose">
+              <h4>Booking Dates:</h4>
+              <li><%= @booking.start_time.strftime("%b %e, %l:%M %p") %> to <%= @booking.end_time.strftime("%b %e, %l:%M %p") %></li>
+              <li><i class="fe fe-check text-success mr-2" aria-hidden="true"></i><%= @booking.booked_activity.split('_').collect(&:capitalize).join(' ') %></li>
+              <li><i class="fe fe-check text-success mr-2" aria-hidden="true"></i> Rooms: <%= @booking.space.room %></li>
+              <li><i class="fe fe-check text-success mr-2" aria-hidden="true"></i>Restrooms: <%= @booking.space.restroom %></li>
+              <% @booking.space.amenities.each do |amenity| %>
+              <li><i class="fe fe-check text-success mr-2" aria-hidden="true"></i><%= amenity.split('_').collect(&:capitalize).join(' ') %></li>
+              <% end %>
+            </ul>
+            <div class="text-center mt-6">
+              <%= form_tag booking_payments_path(@booking) do %>
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-name="My booking"
+              data-email="<%= current_user.email %>"
+              data-description="Booking <%= @booking.space.name %>"
+              data-amount="<%= @booking.amount_cents %>"
+              data-currency="<%= @booking.amount.currency %>"></script>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-status bg-blue"></div>
+          <div class="card-body">
+            <div id="carousel-indicators" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carousel-indicators" data-slide-to="0" class=""></li>
+                <li data-target="#carousel-indicators" data-slide-to="1" class=""></li>
+                <li data-target="#carousel-indicators" data-slide-to="2" class=""></li>
+                <li data-target="#carousel-indicators" data-slide-to="3" class=""></li>
+                <li data-target="#carousel-indicators" data-slide-to="4" class="active"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="carousel-picture" alt="" src="<%= cl_image_path @booking.space.pictures[0].path if @booking.space.pictures[0].path.present? %>" data-holder-rendered="true">
+                </div>
+                <% @booking.space.pictures.drop(1).each do |picture| %>
+                <div class="carousel-item">
+                  <img class="carousel-picture" alt="" src="<%= cl_image_path picture.path %>" data-holder-rendered="true">
+                </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
