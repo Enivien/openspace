@@ -16,7 +16,7 @@
             <%= link_to "Review this past booking ❤️", new_booking_review_path(booking) %>
           </p>
           <% else %>
-          <p><%= booking.start_time%> - <%= booking.end_time %></p>
+          <p><%= booking.start_time.strftime("%b %e, %l:%M %p") %> - <%= booking.end_time.strftime("%b %e, %l:%M %p") %></p>
           <p>Activity: <%= booking.booked_activity.split('_').collect(&:capitalize).join(' ') %></p>
           <% end %>
         </div>

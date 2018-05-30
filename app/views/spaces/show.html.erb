@@ -181,11 +181,11 @@
           <h2 class="card-title ">Other Great Spaces</h2>
         </div>
         <br>
+        <div class="row">
         <% @spaces.sample(5).each do |space| %>
-        <div class="col-sm-6 col-xl-3">
+        <div class="col-sm-6 col-xl-4">
           <div class="card">
             <%= link_to space_path(space) do %>
-
             <div class="card-img-top card-pic" style="background-image: url('<%= cl_image_path space.pictures[0].path if space.pictures.any? %>'); height: 175px; background-size: cover !important">
             </div>
             <% end %>
@@ -218,6 +218,5 @@
       <% end %>
     </div>
   </div>
-</div>
 </div>
 
