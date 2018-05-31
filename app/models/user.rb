@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :conversations, through: :messages
 
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
