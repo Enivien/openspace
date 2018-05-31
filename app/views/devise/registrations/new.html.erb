@@ -4,8 +4,8 @@
 
     <h2 class="margin-top-60">Sign up</h2>
     <div class="margin-bottom-15">
-    <%= link_to image_tag("fb-sign.png"), user_facebook_omniauth_authorize_path %>
-    <br />
+      <%= link_to image_tag("fb-sign.png"), user_facebook_omniauth_authorize_path %>
+      <br />
     </div>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
@@ -23,9 +23,9 @@
 
     <div class="margin-top-15">
 
-    <%- if controller_name != 'sessions' %>
-    <%= link_to "Log in", new_session_path(resource_name) %><br />
-    <% end -%>
+      <%- if controller_name != 'sessions' %>
+      <%= link_to "Log in", new_session_path(resource_name) %><br />
+      <% end -%>
 
     </div>
   </div>
