@@ -20,7 +20,7 @@ end
 
 Space.destroy_all
 
-10.times do
+4.times do
  space = Space.new(
    name: Faker::HarryPotter.house,
    location: Faker::HarryPotter.location,
@@ -30,11 +30,30 @@ Space.destroy_all
    price_per_hour: (100..1000).to_a.sample,
    user_id: 1,
    description: Faker::Lorem.sentence(4),
-   picture: "https://picsum.photos/200/300/?random",
-   activity_id: 1
+   latitude: Faker::Address.latitude,
+   longitude: Faker::Address.longitude
    )
+ space.picture_urls = %w[ https://picsum.photos/1280/700/?random
+ https://picsum.photos/1280/700/?random https://picsum.photos/1280/700/?random
+  ]
  space.save!
  p space.name
+
+ amenity = Amenity.new(
+  wifi: true,
+  airco: true,
+  elevator: true,
+  space_id: space.id
+  )
+ amenity.save!
+
+ @activity = Activity.new(
+  offsite_meeting: true,
+  product_launch: true,
+  film_shoot: true,
+  space_id: space.id
+  )
+ @activity.save!
 end
 
 Booking.destroy_all
@@ -43,10 +62,11 @@ Booking.destroy_all
  booking = Booking.new(
    start_time: Faker::Date.between(4.days.ago, Date.today),
    end_time: Date.today,
-   total_price: 600,
-   user_id: 1,
-   space_id: 1,
+   amount_cents: (1..6000).to_a.sample,
+   booked_activity: "offsite_meeting",
+   user_id: User.all.sample.id,
+   space_id: Space.all.sample.id,
    )
  booking.save!
- p booking.total_price
+ p booking.amount_cents
 end
