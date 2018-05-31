@@ -16,17 +16,16 @@
         <span class="input-group-append">
           <!-- <button class="btn btn-primary" type="button">Go!</button> -->
         </div>
-        <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-          id: "space_location",
-          placeholder: "Search in your favorite city.."
-          %>
-          <br>
-          <%= submit_tag "Search!", :class => 'btn btn-primary-search btn-lg' %>
-          <% end %>
-        </span>
-      </div>
+      <%= text_field_tag "query[location]",
+      params[:query],
+      class: "form-control",
+        id: "space_location",
+        placeholder: "Search in your favorite city.."
+        %>
+        <br>
+        <%= submit_tag "Search!", :class => 'btn btn-primary-search btn-lg' %>
+        <% end %>
+      </span>
     </div>
 
 

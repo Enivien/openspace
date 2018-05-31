@@ -2,8 +2,23 @@ class SpacesController < ApplicationController
   before_action :set_space, only: [:show, :destroy, :edit, :update]
 
   def index
-    @spaces = Space.all
-    @spaces_markers = Space.where.not(latitude: nil, longitude: nil)
+    if query = params[:query]
+      sql = query.permit!.to_hash.map do |key, value|
+        next if value == 'nil' || value == ''
+        if ['activities', 'amenities'].include?(key)
+          "#{value} = 'true'"
+        elsif ['price_per_hour', 'capacity'].include?(key)
+          "#{key} >= '#{value}'"
+        else
+          "#{key} = '#{value}'"
+        end
+      end.compact
+      sql = sql.join(" AND ")
+      @spaces = Space.joins(:amenity).joins(:activity).where(sql)
+    else
+      @spaces = Space.all
+    end
+    @spaces_markers = @spaces.where.not(latitude: nil, longitude: nil)
     @markers = @spaces_markers.map do |space|
       content = space.name
 
@@ -15,18 +30,8 @@ class SpacesController < ApplicationController
       }
     end
 
-    if params[:query].present?
-      sql_query = " \
-        spaces.location ILIKE :query \
-        OR spaces.name ILIKE :query \
-      "
-      @spaces = Space.where(sql_query, query: "%#{params[:query]}%")
-    else
-      @spaces = Space.all
-    end
-
     @favorite = Favorite.new
-
+    @amenities = ["on_site_parking", "wheelchair_access", "airco", "elevator", "natural_light", "whiteboard", "kitchen", "projector", "wifi"]
     @activities = ["offsite_meeting", "workshop", "photo_shoot", "film_shoot", "corporate_event", "office_party", "product_launch"]
   end
 
