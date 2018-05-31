@@ -1,23 +1,17 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-4 col-xs-offset-4">
-      <div class="fullpage">
-        <h1 class="text-center">Create a new review!</h1>
+<br>
+<div class="container" style="width: 30%">
 
-        <div class="wrapper-grey padded">
-     <!--      <div class="container"> -->
-            <%= simple_form_for([@booking, @review]) do |f| %>
-            <!-- [...] -->
-            <%= f.input :content %>
-            <%= f.input :rating %>
-            <%= f.button :submit, :class => 'btn btn-primary text-center' %>
-            <!-- [...] -->
-            <% end %>
-          </div>
-<!--         </div> -->
+  <h1 class="text-center">Review your stay at <br><br>"<%= link_to @booking.space.name, space_path(@booking.space) %>"</h1>
 
-      </div>
-    </div>
+  <div class="wrapper-grey padded">
+   <!--      <div class="container"> -->
+    <%= simple_form_for([@booking, @review]) do |f| %>
+    <!-- [...] -->
+    <%= f.input :content %>
+    <%= f.input :rating %>
+    <%= f.button :submit, :class => 'btn btn-primary text-center' %>
+    <!-- [...] -->
+    <% end %>
   </div>
 </div>
 
