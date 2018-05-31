@@ -29,11 +29,13 @@
   <meta name="twitter:image:src" content="<%= meta_image %>">
 </head>
 
-  <%= render 'shared/navbar' %>
 <body class="<%= action_name %> <%= 'padding-top-70' unless params[:action] == "home" %>">
+
+  <%= render 'shared/navbar' %>
   <%= render 'shared/flashes' %>
   <%= yield %>
   <%= render 'shared/footer' %>
+
   <%= javascript_include_tag "application" %>
   <%= javascript_pack_tag 'application' %>
   <%= cloudinary_js_config %>
