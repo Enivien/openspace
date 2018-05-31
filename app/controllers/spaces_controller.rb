@@ -4,7 +4,7 @@ class SpacesController < ApplicationController
   def index
     if query = params[:query]
       sql = query.permit!.to_hash.map do |key, value|
-        next if value == 'nil'
+        next if value == 'nil' || value == ''
         if ['activities', 'amenities'].include?(key)
           "#{value} = 'true'"
         elsif ['price_per_hour', 'capacity'].include?(key)

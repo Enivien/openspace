@@ -2,13 +2,13 @@
     <div class="form-group">
       <div class="input-group">
         <form action="/spaces" class="input-group">
-        <select type="text" value="nil" class="form-control" name="query[activities]"placeholder="Activity"><option>Activity</option>
+        <select type="text" value="nil" class="form-control" name="query[activities]"placeholder="Activity"><option class="filter-font" value="nil">Activity</option>
           <% @activities.each do |activity| %>
           <option value="<%= activity %>"><%= activity.split('_').collect(&:capitalize).join(' ') %>
           </option>
           <% end %>
           <span class="input-group-append">
-          <input id="space_location" type="text" class="form-control" placeholder="Location" name="query[location]" value="Amsterdam">
+          <input id="space_location" type="text" class="form-control" placeholder="Location" name="query[location]">
             <select name="query[capacity]" type="integer" class="form-control" placeholder="Attendees">
               <option value="nil">Attendees
               </option>
