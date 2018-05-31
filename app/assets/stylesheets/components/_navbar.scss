@@ -1,13 +1,33 @@
 /* Main navbar */
 .navbar-wagon {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
   transition: all 0.3s ease;
   height: 70px;
   padding: 0px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
+  transition: 0.5s background-color ease;
+}
+
+.navbar-wagon-transparent {
+  box-shadow: none;
+  background-color: transparent;
+  /* Navbar link */
+  .navbar-wagon-link {
+  color: #FFFFFF;
+  font-size: 14px;
+  }
+}
+
+.navbar-fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  border-width: 0 0 1px;
 }
 
 /* Logo */

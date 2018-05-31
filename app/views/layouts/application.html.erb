@@ -28,8 +28,9 @@
   <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
   <meta name="twitter:image:src" content="<%= meta_image %>">
 </head>
-<body>
+
   <%= render 'shared/navbar' %>
+<body class="<%= action_name %> <%= 'padding-top-70' unless params[:action] == "home" %>">
   <%= render 'shared/flashes' %>
   <%= yield %>
   <%= render 'shared/footer' %>
