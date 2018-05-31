@@ -1,0 +1,5 @@
+meta_product_name: "Open Space"
+meta_title: "Discover & Book Unique Spaces for Your Upcoming Activity"
+meta_description: "A plattform that lets you book from a range of selected locations to host your next: photoshooting / offsite-event / workshop / launch-party / office-parties etc."
+meta_image: "banner.jpg"                       # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
