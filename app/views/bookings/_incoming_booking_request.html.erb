@@ -29,7 +29,7 @@
       <% else %>
       <%= simple_form_for ([space, booking]) do |f| %>
       <div class="flexbox">
-        <%= f.select :status, ['Accept & request payment','Decline'], :class => ""%>
+        <%= f.select :status, ['Accept & request payment','Declined'], :class => ""%>
         <%= f.button :submit, :class => 'btn btn-primary', :id => "margin-left" %>
       </div>
       <% end %>
