@@ -7,7 +7,7 @@
         <%= simple_form_for [@space, @activity] do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs text-center">
+        <div class="form-inputs ">
           <%= f.input :offsite_meeting %>
           <%= f.input :workshop %>
           <%= f.input :photo_shoot %>
@@ -16,7 +16,7 @@
           <%= f.input :office_party %>
           <%= f.input :product_launch %>
         </div>
-        <div class="form-actions text-center">
+        <div class="form-actions margin-bottom-30 margin-top-30">
           <%= f.button :submit, "Submit" %>
         </div>
         <% end %>

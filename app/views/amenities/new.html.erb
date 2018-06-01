@@ -8,7 +8,7 @@
         <%= simple_form_for [@space, @amenity] do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs text-center">
+        <div class="form-inputs">
           <%= f.input :on_site_parking %>
           <%= f.input :wheelchair_access %>
           <%= f.input :airco %>
@@ -19,7 +19,7 @@
           <%= f.input :projector %>
           <%= f.input :wifi %>
         </div>
-        <div class="form-actions text-center">
+        <div class="form-actions margin-bottom-30">
           <%= f.button :submit, "Next" %>
         </div>
         <% end %>
