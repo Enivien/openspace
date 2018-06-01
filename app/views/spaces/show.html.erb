@@ -163,7 +163,7 @@
               <i class="fe fe-star"></i>
               <% end %>
             </h3>
-            <p> <strong><%= review.booking.user.first_name %></strong> visited this space <%= review.booking.start_time %> - <%= review.booking.end_time %></p>
+            <p> <strong><%= review.booking.user.first_name %></strong> visited this space <%= review.booking.start_time.strftime("%b %e, %l:%M %p") %> - <%= review.booking.end_time.strftime("%b %e, %l:%M %p") %></p>
           </div>
         </div>
         <% end %>
@@ -182,7 +182,7 @@
         </div>
         <br>
         <div class="row">
-        <% @spaces.sample(5).each do |space| %>
+        <% @spaces.sample(3).each do |space| %>
         <div class="col-sm-6 col-xl-4">
           <div class="card">
             <%= link_to space_path(space) do %>
