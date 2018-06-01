@@ -1,7 +1,7 @@
 <div><!-- TOP CAROUSSEL INCL SEARCH FIELD
   -->
   <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "example1.jpg" %>');">
-
+      <div class="search">
       <div class="margin-bottom-15">
         <h1 style="text-align: left;">Find spaces for
           <span id="banner-typed-text"></span>
@@ -12,21 +12,20 @@
 
       <div class="search">
       <%= form_tag spaces_path, method: :get do %>
-      <div class="input-group">
-        <!--       <input type="text" id="space_location" class="form-control" placeholder="Search in your city..."> -->
-        <!--         <input class="form-control" placeholder="Search for activites ..."> -->
+      <div class="input-group input-group-landingpage >
+        <!--       <input type="text" id="space_location" class="form-control" placeholder="Search in your city...">
         <%= text_field_tag "query[location]",
         params[:query],
-        class: "form-control",
+        class: "form-control input-line-height-lg",
           id: "space_location",
           placeholder: "Search in your favorite city.."
           %>
         <span class="input-group-append">
           <%= submit_tag "Search", :class => 'btn btn-primary btn-lg btn-square' %>
           <% end %>
-          <!-- <button class="btn btn-primary" type="button">Go!</button> -->
         </span>
       </div>
+    </div>
     </div>
 
   </div>
@@ -38,7 +37,7 @@
 
     <div class="flexgroup">
       <div>
-        <h1>Book a space that inspires</h1>
+        <h1>Book a space that suits you</h1>
         <h2>Be inspired to meet, create, and innovate.</h2>
       </div>
     </div>
